@@ -20,20 +20,40 @@
         android:id="@+id/btnStartPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewCountdown"
+        android:layout_below="@id/textViewCountdown"
         android:layout_centerHorizontal="true"
         android:text="start"/>
-    
+
     <Button
         android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewCountdown"
         android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/btnStartPause"
+        android:layout_below="@id/textViewCountdown"
+        android:layout_toRightOf="@id/btnStartPause"
         android:text="reset"
         android:visibility="invisible"
         tools:visibility="visible"/>
+
+    <EditText
+        android:id="@+id/editTextMins"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textViewCountdown"
+        android:layout_centerHorizontal="true"
+        android:maxLength="4"
+        android:ems="10"
+        android:hint="Minutes"
+        android:inputType="number"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btnSetMinutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/editTextMins"
+        android:layout_above="@id/textViewCountdown"
+        android:text="Set" />
 
 
 </RelativeLayout>

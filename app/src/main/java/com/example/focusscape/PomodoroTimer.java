@@ -1,20 +1,22 @@
 package com.example.focusscape;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
 public class PomodoroTimer extends AppCompatActivity {
-    private static final long START_TIME_IN_MILLIS = 600000;
-
+    private EditText mEditTextMins;
     private TextView mTextViewCountdown;
+    private Button mButtonSetMins;
     private Button mButtonStartPause;
     private Button mButtonReset;
 
@@ -22,8 +24,10 @@ public class PomodoroTimer extends AppCompatActivity {
 
     private boolean mTimerRunning;
 
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private long mStartTimeInMillis;
+    private long mTimeLeftInMillis;
     private long mEndTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,30 @@ public class PomodoroTimer extends AppCompatActivity {
         mTextViewCountdown = findViewById(R.id.textViewCountdown);
         mButtonStartPause = findViewById(R.id.btnStartPause);
         mButtonReset = findViewById(R.id.btnReset);
+        mEditTextMins = findViewById(R.id.editTextMins);
+        mButtonSetMins = findViewById(R.id.btnSetMinutes);
+
+        mButtonSetMins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String inputMins = String.valueOf(mEditTextMins.getText());
+                if(inputMins.length() == 0) {
+                    Toast.makeText(view.getContext(),"Field can't be empty",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                long millisInput = Long.parseLong(inputMins) * 60000;
+                if(millisInput == 0) {
+                    Toast.makeText(view.getContext(),"Please enter a positive number",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                setTime(millisInput);
+                mEditTextMins.setText("");
+            }
+        });
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +79,11 @@ public class PomodoroTimer extends AppCompatActivity {
             }
         });
 
-        updateCountDownText();
+    }
+
+    private void setTime(long milliseconds) {
+        mStartTimeInMillis = milliseconds;
+        resetTimer();
     }
 
     public void startTimer() {
@@ -81,7 +113,7 @@ public class PomodoroTimer extends AppCompatActivity {
     }
 
     public void resetTimer() {
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        mTimeLeftInMillis = mStartTimeInMillis;
         updateCountDownText();
         updateButtons();
     }
@@ -107,7 +139,7 @@ public class PomodoroTimer extends AppCompatActivity {
                 mButtonStartPause.setVisibility(View.VISIBLE);
             }
 
-            if(mTimeLeftInMillis < START_TIME_IN_MILLIS) {
+            if(mTimeLeftInMillis < mStartTimeInMillis) {
                 mButtonReset.setVisibility(View.VISIBLE);
             } else {
                 mButtonReset.setVisibility(View.INVISIBLE);
@@ -116,26 +148,46 @@ public class PomodoroTimer extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putLong("millisLeft",mTimeLeftInMillis);
-        outState.putBoolean("timerRunning",mTimerRunning);
-        outState.putLong("endTime",mEndTime);
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putLong("millisLeft",mTimeLeftInMillis);
+        editor.putBoolean("timerRunning",mTimerRunning);
+        editor.putLong("endTime",mEndTime);
+
+        editor.apply();
+
+        if(mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
 
-        mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
-        mTimerRunning = savedInstanceState.getBoolean("timerRunning");
+        SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
+
+        mTimeLeftInMillis = prefs.getLong("millisLeft", mStartTimeInMillis);
+        mTimerRunning = prefs.getBoolean("timerRunning", false);
         updateCountDownText();
         updateButtons();
 
         if(mTimerRunning) {
-            mEndTime = savedInstanceState.getLong("endTime");
+            mEndTime = prefs.getLong("endTime",0);
             mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
-            startTimer();
+
+            if(mTimeLeftInMillis < 0) {
+                mTimeLeftInMillis = 0;
+                mTimerRunning = false;
+                updateCountDownText();
+                updateButtons();
+            } else {
+                startTimer();
+            }
         }
     }
 }
