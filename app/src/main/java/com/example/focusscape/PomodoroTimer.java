@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,9 +15,9 @@ import android.widget.Toast;
 import java.util.Locale;
 
 public class PomodoroTimer extends AppCompatActivity {
-    private EditText mEditTextMins;
+    private EditText mEditTextInput;
     private TextView mTextViewCountdown;
-    private Button mButtonSetMins;
+    private Button mButtonSet;
     private Button mButtonStartPause;
     private Button mButtonReset;
 
@@ -36,13 +37,13 @@ public class PomodoroTimer extends AppCompatActivity {
         mTextViewCountdown = findViewById(R.id.textViewCountdown);
         mButtonStartPause = findViewById(R.id.btnStartPause);
         mButtonReset = findViewById(R.id.btnReset);
-        mEditTextMins = findViewById(R.id.editTextMins);
-        mButtonSetMins = findViewById(R.id.btnSetMinutes);
+        mEditTextInput = findViewById(R.id.editTextMins);
+        mButtonSet = findViewById(R.id.btnSetMinutes);
 
-        mButtonSetMins.setOnClickListener(new View.OnClickListener() {
+        mButtonSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String inputMins = String.valueOf(mEditTextMins.getText());
+                String inputMins = String.valueOf(mEditTextInput.getText());
                 if(inputMins.length() == 0) {
                     Toast.makeText(view.getContext(),"Field can't be empty",
                             Toast.LENGTH_SHORT).show();
@@ -57,7 +58,7 @@ public class PomodoroTimer extends AppCompatActivity {
                 }
 
                 setTime(millisInput);
-                mEditTextMins.setText("");
+                mEditTextInput.setText("");
             }
         });
 
@@ -84,6 +85,7 @@ public class PomodoroTimer extends AppCompatActivity {
     private void setTime(long milliseconds) {
         mStartTimeInMillis = milliseconds;
         resetTimer();
+        closeKeyboard();
     }
 
     public void startTimer() {
@@ -98,39 +100,51 @@ public class PomodoroTimer extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-                updateButtons();
+                updateTimerInterface();
             }
         }.start();
 
         mTimerRunning = true;
-        updateButtons();
+        updateTimerInterface();
     }
 
     public void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
-        updateButtons();
+        updateTimerInterface();
     }
 
     public void resetTimer() {
         mTimeLeftInMillis = mStartTimeInMillis;
         updateCountDownText();
-        updateButtons();
+        updateTimerInterface();
     }
 
     public void updateCountDownText() {
-        int minutes = (int) mTimeLeftInMillis / 1000 / 60;
+        int hours = (int) mTimeLeftInMillis / 1000 / 3600;
+        int minutes = (int) mTimeLeftInMillis / 1000 % 3600 / 60;
         int seconds = (int) mTimeLeftInMillis / 1000 % 60;
 
-        String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d",minutes,seconds);
+        String timeLeftFormatted;
+        if(hours > 0) {
+            timeLeftFormatted = String.format(Locale.getDefault(),
+                    "%d:%02d:%02d",hours,minutes,seconds);
+        } else {
+            timeLeftFormatted = String.format(Locale.getDefault(),
+                    "%02d:%02d",minutes,seconds);
+        }
         mTextViewCountdown.setText(timeLeftFormatted);
     }
 
-    private void updateButtons() {
+    private void updateTimerInterface() {
         if(mTimerRunning) {
+            mEditTextInput.setVisibility(View.INVISIBLE);
+            mButtonSet.setVisibility(View.INVISIBLE);
             mButtonReset.setVisibility(View.INVISIBLE);
             mButtonStartPause.setText("Pause");
         } else {
+            mEditTextInput.setVisibility(View.VISIBLE);
+            mButtonSet.setVisibility(View.VISIBLE);
             mButtonStartPause.setText("Start");
 
             if(mTimeLeftInMillis < 1000) {
@@ -147,6 +161,14 @@ public class PomodoroTimer extends AppCompatActivity {
         }
     }
 
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if(view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -154,6 +176,7 @@ public class PomodoroTimer extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
+        editor.putLong("startTimeInMillis",mStartTimeInMillis);
         editor.putLong("millisLeft",mTimeLeftInMillis);
         editor.putBoolean("timerRunning",mTimerRunning);
         editor.putLong("endTime",mEndTime);
@@ -171,10 +194,11 @@ public class PomodoroTimer extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
 
+        mStartTimeInMillis = prefs.getLong("startTimeInMillis", 600000);
         mTimeLeftInMillis = prefs.getLong("millisLeft", mStartTimeInMillis);
         mTimerRunning = prefs.getBoolean("timerRunning", false);
         updateCountDownText();
-        updateButtons();
+        updateTimerInterface();
 
         if(mTimerRunning) {
             mEndTime = prefs.getLong("endTime",0);
@@ -184,7 +208,7 @@ public class PomodoroTimer extends AppCompatActivity {
                 mTimeLeftInMillis = 0;
                 mTimerRunning = false;
                 updateCountDownText();
-                updateButtons();
+                updateTimerInterface();
             } else {
                 startTimer();
             }
