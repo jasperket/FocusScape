@@ -12,6 +12,9 @@
         android:theme="@style/Theme.FocusScape"
         tools:targetApi="31">
         <activity
+            android:name=".EnvironmentSetup"
+            android:exported="false" />
+        <activity
             android:name=".PomodoroTimer"
             android:exported="false" />
         <activity
