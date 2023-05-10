@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnSetReminder = findViewById(R.id.btnSetReminder);
-        btnPomodoro = findViewById(R.id.btnPomodoro);
-        btnEnvSetup = findViewById(R.id.btnEnvSetup);
+        btnSetReminder = findViewById(R.id.btnSetReminderAct);
+        btnPomodoro = findViewById(R.id.btnPomodoroAct);
+        btnEnvSetup = findViewById(R.id.btnEnvSetupAct);
         btnPomodoro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btnSetReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),SetReminder.class);
+                startActivity(intent);
+            }
+        });
     }
 }

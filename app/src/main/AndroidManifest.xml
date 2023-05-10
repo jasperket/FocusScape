@@ -15,6 +15,9 @@
             android:name=".EnvironmentSetup"
             android:exported="false" />
         <activity
+            android:name=".SetReminder"
+            android:exported="false" />
+        <activity
             android:name=".PomodoroTimer"
             android:exported="false" />
         <activity

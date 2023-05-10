@@ -4,55 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".SetReminder">
 
-    <Button
-        android:id="@+id/btnCalendarAct"
+    <EditText
+        android:id="@+id/editTextReminderTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calendar"
+        android:ems="10"
+        android:inputType="time"
+        android:minHeight="48dp"
+        android:hint="Time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editTextReminderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextReminderTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextReminderNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:hint="Notes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextReminderTime" />
+
     <Button
-        android:id="@+id/btnSetReminderAct"
+        android:id="@+id/btnSetReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set Reminder"
-        app:layout_constraintBottom_toTopOf="@+id/btnCalendarAct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnPomodoroAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pomodoro Timer"
-        app:layout_constraintBottom_toTopOf="@+id/btnCalendarAct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSetReminderAct" />
-
-    <Button
-        android:id="@+id/btnEnvSetupAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Environment Setup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalendarAct" />
-
-    <Button
-        android:id="@+id/btnPomoTrackerAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pomodoro Tracker"
-        app:layout_constraintBottom_toTopOf="@+id/btnEnvSetupAct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalendarAct" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextReminderNotes" />
 </androidx.constraintlayout.widget.ConstraintLayout>
