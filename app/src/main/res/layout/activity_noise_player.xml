@@ -33,36 +33,20 @@
             android:layout_marginTop="10dp"
             android:text="Noise Player"
             android:textColor="@color/light_blue"
-            android:textSize="45dp" />
+            android:textSize="42dp" />
 
     </TableRow>
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:background="@color/light_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow">
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/dark_blue" />
-
-    </FrameLayout>
 
     <TableRow
         android:id="@+id/tableRow2"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:background="@color/mid_blue"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/btnVolumeMute"
@@ -83,19 +67,18 @@
         android:id="@+id/tableRow3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow2">
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/btnaddTrack"
+                android:id="@+id/btnAddTrack"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="@color/mid_blue_plus"
                 android:text="Add Track"
@@ -104,7 +87,7 @@
             <Button
                 android:id="@+id/btnDeleteTrack"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="@color/dark_blue_minus"
                 android:text="Delete Track"
@@ -113,8 +96,9 @@
             <ImageView
                 android:id="@+id/btnTimer"
                 android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:layout_height="60dp"
                 android:clickable="true"
+                android:contentDescription="Timber button"
                 app:srcCompat="@drawable/stopwatch" />
 
         </LinearLayout>
@@ -122,14 +106,18 @@
     </TableRow>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow3">
+        app:layout_constraintTop_toBottomOf="@+id/tableRow"
+        app:layout_constraintVertical_bias="1.0">
 
 
         <ImageView
@@ -158,6 +146,17 @@
             android:clickable="true"
             android:onClick="nextScene"
             app:srcCompat="@drawable/angle_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow">
+
     </LinearLayout>
 
 

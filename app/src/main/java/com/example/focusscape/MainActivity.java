@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnSetReminder;
     Button btnPomodoro;
     Button btnEnvSetup;
+    Button btnNoisePlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         btnSetReminder = findViewById(R.id.btnSetReminderAct);
         btnPomodoro = findViewById(R.id.btnPomodoroAct);
         btnEnvSetup = findViewById(R.id.btnEnvSetupAct);
+        btnNoisePlayer = findViewById(R.id.btnNoisePlayer);
         btnPomodoro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(),SetReminder.class);
+                startActivity(intent);
+            }
+        });
+
+        btnNoisePlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),NoisePlayer.class);
                 startActivity(intent);
             }
         });

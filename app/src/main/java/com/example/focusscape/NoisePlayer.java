@@ -15,6 +15,7 @@ public class NoisePlayer extends AppCompatActivity {
         setContentView(R.layout.activity_noise_player);
     }
 
+
     public void onBack(View v){
         Intent back = new Intent(this, MainActivity.class);
         startActivity(back);
