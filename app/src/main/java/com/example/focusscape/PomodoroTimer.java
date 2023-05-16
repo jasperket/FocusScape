@@ -2,6 +2,9 @@ package com.example.focusscape;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -28,6 +31,11 @@ public class PomodoroTimer extends AppCompatActivity {
     private long mStartTimeInMillis;
     private long mTimeLeftInMillis;
     private long mEndTime;
+
+    private AlarmManager mAlarmManager;
+
+    private Intent mAlarmIntent;
+    private PendingIntent alarmPendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +71,21 @@ public class PomodoroTimer extends AppCompatActivity {
         });
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                mAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                mAlarmIntent = new Intent(view.getContext(), PomodoroAlarmReceiver.class);
+                PendingIntent mAlarmPendingIntent = PendingIntent.getBroadcast(view.getContext(),
+                        0, mAlarmIntent, PendingIntent.FLAG_IMMUTABLE);
+
                 if(mTimerRunning) {
                     pauseTimer();
+                    mAlarmManager.cancel(mAlarmPendingIntent);
                 } else {
                     startTimer();
+                    mAlarmManager.setExact(AlarmManager.RTC_WAKEUP,
+                            System.currentTimeMillis() + mTimeLeftInMillis,mAlarmPendingIntent);
                 }
             }
         });
