@@ -21,23 +21,20 @@ import androidx.core.app.NotificationManagerCompat;
 
 public class PomodoroAlarmReceiver extends BroadcastReceiver {
 
-    private MediaPlayer alarmPlayer;
     @Override
     public void onReceive(Context context, Intent intent) {
-//        Intent intent2 = new Intent(context, AlarmActivity.class);
-//        intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(intent2);
+        Intent intent2 = new Intent(context, PomodoroTimer.class);
+        intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent2,PendingIntent.FLAG_IMMUTABLE);
 
-        alarmPlayer = MediaPlayer.create(context, R.raw.birds);
-        alarmPlayer.start();
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "pomodoro_alarm")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "focusscapealarm")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Pomodoro alarm")
                 .setContentText("Pomodoro session ended")
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
@@ -55,7 +52,6 @@ public class PomodoroAlarmReceiver extends BroadcastReceiver {
         } else if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             notificationManagerCompat.notify(123, builder.build());
         }
-
 
     }
 
