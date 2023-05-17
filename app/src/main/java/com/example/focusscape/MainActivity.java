@@ -84,16 +84,14 @@ public class MainActivity extends AppCompatActivity {
                     ALARM_PERMISSION_REQUEST_CODE);
         }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             // Permission is already granted
-        } else {
-            // Permission is not granted, you need to request it
             final int NOTIF_PERMISSION_REQUEST_CODE = 101;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                ActivityCompat.requestPermissions(this,
-                        new String[] { Manifest.permission.POST_NOTIFICATIONS },
-                        NOTIF_PERMISSION_REQUEST_CODE);
-            }
+            ActivityCompat.requestPermissions(this,
+                    new String[] { Manifest.permission.POST_NOTIFICATIONS },
+                    NOTIF_PERMISSION_REQUEST_CODE);
         }
     }
 }

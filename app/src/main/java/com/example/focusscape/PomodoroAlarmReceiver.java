@@ -20,20 +20,44 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 public class PomodoroAlarmReceiver extends BroadcastReceiver {
+
+    private MediaPlayer alarmPlayer;
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent intent2 = new Intent(context, AlarmActivity.class);
-        context.startActivity(intent2);
+//        Intent intent2 = new Intent(context, AlarmActivity.class);
+//        intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(intent2);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "pomodoroAlarm")
+        alarmPlayer = MediaPlayer.create(context, R.raw.birds);
+        alarmPlayer.start();
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "pomodoro_alarm")
                 .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("Pomodoro Alarm!")
-                .setContentText("The session has ended.")
+                .setContentTitle("Pomodoro alarm")
+                .setContentText("Pomodoro session ended")
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-        notificationManagerCompat.notify(123,builder.build());
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                == PackageManager.PERMISSION_GRANTED
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            notificationManagerCompat.notify(123, builder.build());
+            return;
+        } else if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            notificationManagerCompat.notify(123, builder.build());
+        }
+
+
     }
+
+
 }
