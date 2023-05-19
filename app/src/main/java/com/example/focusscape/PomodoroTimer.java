@@ -22,10 +22,8 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.Locale;
 
-public class PomodoroTimer extends AppCompatActivity {
-    private EditText mEditTextInput;
+public class PomodoroTimer extends AppCompatActivity implements PomodoroSettingsFragment.SettingsDialogListener {
     private TextView mTextViewCountdown;
-    private Button mButtonSet;
     private Button mButtonStartPause;
     private Button mButtonReset;
 
@@ -34,6 +32,9 @@ public class PomodoroTimer extends AppCompatActivity {
     private boolean mTimerRunning;
 
     private long mStartTimeInMillis;
+    private long mWorkTimeInMillis;
+    private long mBreakTimeInMillis;
+    private boolean mIsWorking;
     private long mTimeLeftInMillis;
     private long mEndTime;
 
@@ -43,6 +44,8 @@ public class PomodoroTimer extends AppCompatActivity {
     private PendingIntent alarmPendingIntent;
 
     private CircularProgressIndicator timeCircularIndicator;
+    private Button btnPomodoroSettings;
+    private TextView txtIsWorking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,31 +55,15 @@ public class PomodoroTimer extends AppCompatActivity {
         mTextViewCountdown = findViewById(R.id.textViewCountdown);
         mButtonStartPause = findViewById(R.id.btnStartPause);
         mButtonReset = findViewById(R.id.btnReset);
-        mEditTextInput = findViewById(R.id.editTextMins);
-        mButtonSet = findViewById(R.id.btnSetMinutes);
+        txtIsWorking = findViewById(R.id.txtIsWorking);
 
         timeCircularIndicator = findViewById(R.id.cpiTime);
-        timeCircularIndicator.setProgress(100);
+        btnPomodoroSettings = findViewById(R.id.btnPomodoroTimerSettings);
 
-        mButtonSet.setOnClickListener(new View.OnClickListener() {
+        btnPomodoroSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String inputMins = String.valueOf(mEditTextInput.getText());
-                if(inputMins.length() == 0) {
-                    Toast.makeText(view.getContext(),"Field can't be empty",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                long millisInput = Long.parseLong(inputMins) * 60000;
-                if(millisInput == 0) {
-                    Toast.makeText(view.getContext(),"Please enter a positive number",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                setTime(millisInput);
-                mEditTextInput.setText("");
+                openDialog();
             }
         });
 
@@ -110,6 +97,11 @@ public class PomodoroTimer extends AppCompatActivity {
         createNotificationChannel();
     }
 
+    private void openDialog() {
+        PomodoroSettingsFragment settingsDialog = new PomodoroSettingsFragment();
+        settingsDialog.show(getSupportFragmentManager(),"Settings Dialog");
+    }
+
     private void createNotificationChannel() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "PomodoroAlarm";
@@ -141,6 +133,11 @@ public class PomodoroTimer extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                if(mIsWorking) {
+                    mIsWorking = false;
+                } else {
+                    mIsWorking = true;
+                }
                 updateTimerInterface();
             }
         }.start();
@@ -156,6 +153,11 @@ public class PomodoroTimer extends AppCompatActivity {
     }
 
     public void resetTimer() {
+        if(mIsWorking) {
+            mStartTimeInMillis = mWorkTimeInMillis;
+        } else {
+            mStartTimeInMillis = mBreakTimeInMillis;
+        }
         mTimeLeftInMillis = mStartTimeInMillis;
         updateCountDownTextAndIndicator();
         updateTimerInterface();
@@ -177,19 +179,23 @@ public class PomodoroTimer extends AppCompatActivity {
         mTextViewCountdown.setText(timeLeftFormatted);
 
         double progress = (mTimeLeftInMillis/ (double) mStartTimeInMillis) * 100;
-        System.out.println(progress);
+        System.out.println("prog: " + progress+"%, timeLeft = " +mTimeLeftInMillis+", startTime = "+
+                mStartTimeInMillis+", workTime = " +mWorkTimeInMillis/60000+
+                ", breakTime = "+mBreakTimeInMillis/60000);
         timeCircularIndicator.setProgress((int) progress, true);
     }
 
     private void updateTimerInterface() {
+        if(mIsWorking) {
+            txtIsWorking.setText("Work");
+        } else {
+            txtIsWorking.setText("Break");
+        }
+
         if(mTimerRunning) {
-            mEditTextInput.setVisibility(View.INVISIBLE);
-            mButtonSet.setVisibility(View.INVISIBLE);
             mButtonReset.setVisibility(View.INVISIBLE);
             mButtonStartPause.setText("Pause");
         } else {
-            mEditTextInput.setVisibility(View.VISIBLE);
-            mButtonSet.setVisibility(View.VISIBLE);
             mButtonStartPause.setText("Start");
 
             if(mTimeLeftInMillis < 1000) {
@@ -221,10 +227,11 @@ public class PomodoroTimer extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putLong("startTimeInMillis",mStartTimeInMillis);
         editor.putLong("millisLeft",mTimeLeftInMillis);
         editor.putBoolean("timerRunning",mTimerRunning);
         editor.putLong("endTime",mEndTime);
+        editor.putBoolean("isWorking",mIsWorking);
+        editor.putLong("startTimeInMillis",mStartTimeInMillis);
 
         editor.apply();
 
@@ -239,9 +246,13 @@ public class PomodoroTimer extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
 
-        mStartTimeInMillis = prefs.getLong("startTimeInMillis", 600000);
-        mTimeLeftInMillis = prefs.getLong("millisLeft", mStartTimeInMillis);
+
         mTimerRunning = prefs.getBoolean("timerRunning", false);
+        mWorkTimeInMillis = prefs.getLong("workTimeInMillis", 1500000);
+        mBreakTimeInMillis = prefs.getLong("breakTimeInMillis",300000);
+        mStartTimeInMillis = prefs.getLong("startTimeInMillis", mWorkTimeInMillis);
+        mTimeLeftInMillis = prefs.getLong("millisLeft", mStartTimeInMillis);
+        mIsWorking = prefs.getBoolean("isWorking",true);
         updateCountDownTextAndIndicator();
         updateTimerInterface();
 
@@ -258,5 +269,22 @@ public class PomodoroTimer extends AppCompatActivity {
                 startTimer();
             }
         }
+    }
+
+    @Override
+    public void applyTexts(long workStartTime, long breakStartTime) {
+        mWorkTimeInMillis = workStartTime;
+        mStartTimeInMillis = mWorkTimeInMillis;
+        mBreakTimeInMillis = breakStartTime;
+        mIsWorking = true;
+
+        SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong("workTimeInMillis",mWorkTimeInMillis);
+        editor.putLong("breakTimeInMillis",mBreakTimeInMillis);
+        editor.apply();
+
+        pauseTimer();
+        resetTimer();
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_1000"
     tools:context=".PomodoroTimer">
 
     <TextView
@@ -14,7 +15,7 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="32dp"
         android:text="00:00"
-        android:textColor="@android:color/black"
+        android:textColor="@color/blue_100"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,10 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewCountdown"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
         android:text="start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMins" />
+        app:layout_constraintTop_toBottomOf="@+id/cpiTime" />
 
     <Button
         android:id="@+id/btnReset"
@@ -44,31 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnStartPause"
         tools:visibility="visible" />
-
-    <EditText
-        android:id="@+id/editTextMins"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/textViewCountdown"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="Minutes"
-        android:inputType="number"
-        android:maxLength="4"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cpiTime" />
-
-    <Button
-        android:id="@+id/btnSetMinutes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/textViewCountdown"
-        android:layout_toEndOf="@id/editTextMins"
-        android:text="Set"
-        app:layout_constraintStart_toEndOf="@+id/editTextMins"
-        app:layout_constraintTop_toBottomOf="@+id/cpiTime" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/cpiTime"
@@ -93,8 +70,18 @@
         android:minWidth="32dp"
         android:minHeight="32dp"
         app:icon="@drawable/baseline_more_vert_24"
-        app:iconSize="32dp"
+        app:iconSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtIsWorking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Work"
+        android:textColor="@color/blue_100"
+        app:layout_constraintBottom_toTopOf="@+id/textViewCountdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
