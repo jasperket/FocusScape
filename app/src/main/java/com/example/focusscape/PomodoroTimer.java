@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+
 import java.util.Locale;
 
 public class PomodoroTimer extends AppCompatActivity {
@@ -40,6 +42,8 @@ public class PomodoroTimer extends AppCompatActivity {
     private Intent mAlarmIntent;
     private PendingIntent alarmPendingIntent;
 
+    private CircularProgressIndicator timeCircularIndicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,9 @@ public class PomodoroTimer extends AppCompatActivity {
         mButtonReset = findViewById(R.id.btnReset);
         mEditTextInput = findViewById(R.id.editTextMins);
         mButtonSet = findViewById(R.id.btnSetMinutes);
+
+        timeCircularIndicator = findViewById(R.id.cpiTime);
+        timeCircularIndicator.setProgress(100);
 
         mButtonSet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +135,7 @@ public class PomodoroTimer extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
+                updateCountDownTextAndIndicator();
             }
 
             @Override
@@ -150,11 +157,11 @@ public class PomodoroTimer extends AppCompatActivity {
 
     public void resetTimer() {
         mTimeLeftInMillis = mStartTimeInMillis;
-        updateCountDownText();
+        updateCountDownTextAndIndicator();
         updateTimerInterface();
     }
 
-    public void updateCountDownText() {
+    public void updateCountDownTextAndIndicator() {
         int hours = (int) mTimeLeftInMillis / 1000 / 3600;
         int minutes = (int) mTimeLeftInMillis / 1000 % 3600 / 60;
         int seconds = (int) mTimeLeftInMillis / 1000 % 60;
@@ -168,6 +175,10 @@ public class PomodoroTimer extends AppCompatActivity {
                     "%02d:%02d",minutes,seconds);
         }
         mTextViewCountdown.setText(timeLeftFormatted);
+
+        double progress = (mTimeLeftInMillis/ (double) mStartTimeInMillis) * 100;
+        System.out.println(progress);
+        timeCircularIndicator.setProgress((int) progress, true);
     }
 
     private void updateTimerInterface() {
@@ -231,7 +242,7 @@ public class PomodoroTimer extends AppCompatActivity {
         mStartTimeInMillis = prefs.getLong("startTimeInMillis", 600000);
         mTimeLeftInMillis = prefs.getLong("millisLeft", mStartTimeInMillis);
         mTimerRunning = prefs.getBoolean("timerRunning", false);
-        updateCountDownText();
+        updateCountDownTextAndIndicator();
         updateTimerInterface();
 
         if(mTimerRunning) {
@@ -241,7 +252,7 @@ public class PomodoroTimer extends AppCompatActivity {
             if(mTimeLeftInMillis < 0) {
                 mTimeLeftInMillis = 0;
                 mTimerRunning = false;
-                updateCountDownText();
+                updateCountDownTextAndIndicator();
                 updateTimerInterface();
             } else {
                 startTimer();

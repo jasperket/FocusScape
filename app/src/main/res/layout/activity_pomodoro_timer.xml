@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,9 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_marginBottom="32dp"
         android:text="00:00"
         android:textColor="@android:color/black"
-        android:textSize="60sp" />
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnStartPause"
@@ -22,18 +27,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewCountdown"
         android:layout_centerHorizontal="true"
-        android:text="start"/>
+        android:text="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMins" />
 
     <Button
         android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
         android:layout_below="@id/textViewCountdown"
         android:layout_toRightOf="@id/btnStartPause"
         android:text="reset"
         android:visibility="invisible"
-        tools:visibility="visible"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartPause"
+        tools:visibility="visible" />
 
     <EditText
         android:id="@+id/editTextMins"
@@ -41,19 +51,50 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/textViewCountdown"
         android:layout_centerHorizontal="true"
-        android:maxLength="4"
         android:ems="10"
         android:hint="Minutes"
         android:inputType="number"
-        android:minHeight="48dp" />
+        android:maxLength="4"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cpiTime" />
 
     <Button
         android:id="@+id/btnSetMinutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/editTextMins"
         android:layout_above="@id/textViewCountdown"
-        android:text="Set" />
+        android:layout_toEndOf="@id/editTextMins"
+        android:text="Set"
+        app:layout_constraintStart_toEndOf="@+id/editTextMins"
+        app:layout_constraintTop_toBottomOf="@+id/cpiTime" />
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/cpiTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:indicatorSize="350dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:trackThickness="10dp" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnPomodoroTimerSettings"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/descPomodoroTimerSettings"
+        android:minWidth="32dp"
+        android:minHeight="32dp"
+        app:icon="@drawable/baseline_more_vert_24"
+        app:iconSize="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
