@@ -1,4 +1,4 @@
-package com.example.focusscape;
+package com.example.focusscape.pomodorotimer;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.focusscape.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 

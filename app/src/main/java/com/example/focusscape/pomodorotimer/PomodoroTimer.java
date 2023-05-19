@@ -1,4 +1,4 @@
-package com.example.focusscape;
+package com.example.focusscape.pomodorotimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,10 +14,9 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.focusscape.R;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.Locale;

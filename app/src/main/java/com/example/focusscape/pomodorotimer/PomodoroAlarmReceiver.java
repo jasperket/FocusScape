@@ -1,23 +1,18 @@
-package com.example.focusscape;
-
-import static androidx.core.content.ContextCompat.getSystemService;
-import static androidx.core.content.ContextCompat.startActivity;
+package com.example.focusscape.pomodorotimer;
 
 import android.Manifest;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
 import android.os.Build;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.example.focusscape.R;
 
 public class PomodoroAlarmReceiver extends BroadcastReceiver {
 
