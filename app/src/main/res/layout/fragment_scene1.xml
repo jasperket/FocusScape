@@ -1,25 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".Scene1Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="42dp"
-        android:textAlignment="center"
-        android:background="@color/light_blue"
-        android:paddingTop="25dp"
-        android:text="Scene 1" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <View
+        <LinearLayout
+        android:id="@+id/tableRow"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/mid_blue_plus"
-        android:layout_marginTop="100dp">
-    </View>
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:clickable="true"
+            android:onClick="goBack"
+            app:srcCompat="@drawable/angle_small_left" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:text="Noise Player"
+            android:textColor="@color/light_blue"
+            android:textSize="42dp" />
+
+        <ImageView
+            android:id="@+id/btnTimer"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:contentDescription="Timber button"
+            app:srcCompat="@drawable/stopwatch" />
+
+
+    </LinearLayout>
+
+        <TextView
+        android:id="@+id/scene"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mid_blue"
+        android:text="Forest Scene"
+        android:textSize="35dp"
+        android:paddingTop="30dp"
+        />
+
+        <TableLayout
+        android:id="@+id/iconTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#89c2d9">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+
+            android:layout_marginTop="22dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/rain"></ImageView>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:clickable="true"
+                android:src="@drawable/wave" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:src="@drawable/fire" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/bird" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:clickable="true"
+                android:src="@drawable/frogs" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:src="@drawable/crickets" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/wind" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:clickable="true"
+                android:src="@drawable/rain" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:src="@drawable/rain" />
+        </TableRow>
+    </TableLayout>
+
+        <LinearLayout
+        android:id="@+id/volumecontrol"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="@color/mid_blue"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btnVolumeMute"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/volume" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:thumbTint="@color/dark_blue"
+            android:tickMark="@color/dark_blue" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/volumecontrol">
+
+        <Button
+            android:id="@+id/btnAddTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/mid_blue_plus"
+            android:text="Add Track"
+            android:textColor="@color/light_blue" />
+
+        <Button
+            android:id="@+id/btnDeleteTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/dark_blue_minus"
+            android:text="Delete Track"
+            android:textColor="@color/light_blue" />
+
+    </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
