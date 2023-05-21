@@ -8,102 +8,16 @@
     tools:context=".NoisePlayer">
 
 
-    <TableRow
-        android:id="@+id/tableRow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:layout_width="409dp"
+        android:layout_height="779dp"
+        android:id="@+id/framelayout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="70dp"
-            android:layout_height="80dp"
-            android:clickable="true"
-            android:onClick="goBack"
-            app:srcCompat="@drawable/angle_small_left" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="10dp"
-            android:text="Noise Player"
-            android:textColor="@color/light_blue"
-            android:textSize="42dp" />
-
-    </TableRow>
-
-
-
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:background="@color/mid_blue"
-        app:layout_constraintBottom_toTopOf="@+id/tableRow3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/btnVolumeMute"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:onClick="muteVolume"
-            app:srcCompat="@drawable/volume" />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:thumbTint="@color/dark_blue"
-            android:tickMark="@color/dark_blue" />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/tableRow3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btnAddTrack"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/mid_blue_plus"
-                android:text="Add Track"
-                android:textColor="@color/light_blue" />
-
-            <Button
-                android:id="@+id/btnDeleteTrack"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/dark_blue_minus"
-                android:text="Delete Track"
-                android:textColor="@color/light_blue" />
-
-            <ImageView
-                android:id="@+id/btnTimer"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:clickable="true"
-                android:contentDescription="Timber button"
-                app:srcCompat="@drawable/stopwatch" />
-
-        </LinearLayout>
-
-    </TableRow>
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -116,7 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow"
         app:layout_constraintVertical_bias="1.0">
 
 
@@ -146,17 +59,6 @@
             android:clickable="true"
             android:onClick="nextScene"
             app:srcCompat="@drawable/angle_right" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tableRow2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow">
-
     </LinearLayout>
 
 
