@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
@@ -29,6 +32,8 @@ public class CalendarAct extends AppCompatActivity implements CalendarViewHolder
     private CalendarAdapter adapterReminder;
     private List<CalendarItem> calendarItems;
     private DatabaseHelper dbHelper;
+
+    private Button btnBackFromCalendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,7 @@ public class CalendarAct extends AppCompatActivity implements CalendarViewHolder
         calendarView = findViewById(R.id.calendarView);
         txtCalendarDate = findViewById(R.id.txtCalendarDate);
         txtPomodoroCount = findViewById(R.id.txtPomodoroCount);
+        btnBackFromCalendar = findViewById(R.id.btnBackFromCalendar);
 
         dbHelper = new DatabaseHelper(this);
 
@@ -60,6 +66,14 @@ public class CalendarAct extends AppCompatActivity implements CalendarViewHolder
                 calendarItems = getDataFromDatabase();
                 updateInterface();
                 updateRecyclerReminder();
+            }
+        });
+
+        btnBackFromCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }

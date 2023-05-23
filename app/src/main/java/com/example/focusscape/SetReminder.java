@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -43,7 +44,7 @@ public class SetReminder extends AppCompatActivity {
     private String dateString;
     private String startString;
     private String endString;
-
+    private Button btnBackFromSetReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +58,19 @@ public class SetReminder extends AppCompatActivity {
         eTxtReminderStart = findViewById(R.id.eTxtReminderStart);
         eTxtReminderEnd = findViewById(R.id.eTxtReminderEnd);
         btnReminderSet = findViewById(R.id.btnSetReminder);
+        btnBackFromSetReminder = findViewById(R.id.btnBackFromSetReminder);
 
         eTxtReminderDate.setShowSoftInputOnFocus(false);
         eTxtReminderStart.setShowSoftInputOnFocus(false);
         eTxtReminderEnd.setShowSoftInputOnFocus(false);
 
+        btnBackFromSetReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
         eTxtReminderDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {

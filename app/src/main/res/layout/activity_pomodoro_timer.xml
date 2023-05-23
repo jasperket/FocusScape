@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/blue_1000"
     tools:context=".pomodorotimer.PomodoroTimer">
+    <Button
+        android:id="@+id/btnBackFromPomodoro"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/btnBack"
+        app:icon="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewCountdown"
