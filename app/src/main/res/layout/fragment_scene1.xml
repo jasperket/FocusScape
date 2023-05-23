@@ -29,7 +29,6 @@
             android:layout_width="70dp"
             android:layout_height="80dp"
             android:clickable="true"
-            android:onClick="goBack"
             app:srcCompat="@drawable/angle_small_left" />
 
         <TextView
@@ -43,14 +42,6 @@
             android:textColor="@color/light_blue"
             android:textSize="42dp" />
 
-        <ImageView
-            android:id="@+id/btnTimer"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:clickable="true"
-            android:contentDescription="Timber button"
-            app:srcCompat="@drawable/stopwatch" />
 
 
     </LinearLayout>
@@ -62,7 +53,7 @@
         android:background="@color/mid_blue"
         android:text="Forest Scene"
         android:textSize="35dp"
-        android:paddingTop="30dp"
+
         />
 
         <TableLayout
@@ -80,23 +71,29 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/first"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:clickable="true"
-                android:src="@drawable/rain"></ImageView>
+                android:foregroundTint="@color/dark_blue"
+                android:src="@drawable/rain">
+
+            </ImageView>
 
             <ImageView
+                android:id="@+id/second"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:clickable="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:clickable="true"
                 android:src="@drawable/wave" />
 
             <ImageView
+                android:id="@+id/third"
+                android:clickable="true"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:clickable="true"
                 android:src="@drawable/fire" />
         </TableRow>
 
@@ -107,12 +104,14 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/fourth"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:clickable="true"
                 android:src="@drawable/bird" />
 
             <ImageView
+                android:id="@+id/fifth"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="50dp"
@@ -121,6 +120,7 @@
                 android:src="@drawable/frogs" />
 
             <ImageView
+                android:id="@+id/sixth"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:clickable="true"
@@ -128,6 +128,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/seventh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
@@ -141,6 +142,7 @@
                 android:src="@drawable/rain" />
 
             <ImageView
+                android:id="@+id/eighth"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="50dp"
@@ -149,6 +151,7 @@
                 android:src="@drawable/rain" />
 
             <ImageView
+                android:id="@+id/ninth"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:clickable="true"
