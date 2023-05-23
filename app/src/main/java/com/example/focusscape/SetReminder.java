@@ -3,12 +3,15 @@ package com.example.focusscape;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Pair;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
@@ -32,6 +35,7 @@ public class SetReminder extends AppCompatActivity {
     private TextInputEditText eTxtReminderDate;
     private TextInputEditText eTxtReminderStart;
     private TextInputEditText eTxtReminderEnd;
+    private Button btnReminderSet;
     private String dateString;
     private String startString;
     private String endString;
@@ -41,10 +45,13 @@ public class SetReminder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_reminder);
 
+        endString = "";
+
         eTxtReminderNotes = findViewById(R.id.eTxtReminderNotes);
         eTxtReminderDate = findViewById(R.id.eTxtReminderDate);
         eTxtReminderStart = findViewById(R.id.eTxtReminderStart);
         eTxtReminderEnd = findViewById(R.id.eTxtReminderEnd);
+        btnReminderSet = findViewById(R.id.btnSetReminder);
 
         eTxtReminderDate.setShowSoftInputOnFocus(false);
         eTxtReminderStart.setShowSoftInputOnFocus(false);
@@ -64,11 +71,39 @@ public class SetReminder extends AppCompatActivity {
                     showTimePickerDialog(eTxtReminderStart,true);
             }
         });
+
         eTxtReminderEnd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if(b)
                     showTimePickerDialog(eTxtReminderEnd,false);
+            }
+        });
+
+        btnReminderSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
+                SQLiteDatabase database = databaseHelper.getWritableDatabase();
+                String time = startString;
+                if(!endString.equals("")) {
+                    time = time + " - " + endString;
+                }
+                String notes = "";
+                if (eTxtReminderNotes.length() > 0) {
+                    // EditText is not empty
+                    notes = String.valueOf(eTxtReminderNotes.getText());
+                }
+
+                ContentValues values = new ContentValues();
+                values.put("date",dateString);
+                values.put("time",time);
+                if(!notes.equals("")) {
+                    values.put("notes", notes);
+                }
+                long rowId = database.insert("calendarTable",null,values);
+                System.out.println("Success! rowId: " +rowId);
+                database.close();
             }
         });
     }
@@ -126,7 +161,6 @@ public class SetReminder extends AppCompatActivity {
         datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
             public void onPositiveButtonClick(Long selection) {
-                long dateInMillis = datePicker.getSelection();
                 Date reminderDate = new Date(selection);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                 dateString = dateFormat.format(reminderDate);
