@@ -76,7 +76,7 @@
                 android:layout_height="100dp"
                 android:clickable="true"
                 android:foregroundTint="@color/dark_blue"
-                android:src="@drawable/rain">
+                android:src="@drawable/bird">
 
             </ImageView>
 
@@ -87,14 +87,14 @@
                 android:clickable="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:src="@drawable/wave" />
+                android:src="@drawable/frogs" />
 
             <ImageView
                 android:id="@+id/third"
                 android:clickable="true"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/fire" />
+                android:src="@drawable/crickets" />
         </TableRow>
 
         <TableRow
@@ -108,7 +108,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:clickable="true"
-                android:src="@drawable/bird" />
+                android:src="@drawable/wind" />
 
             <ImageView
                 android:id="@+id/fifth"
@@ -117,14 +117,14 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:clickable="true"
-                android:src="@drawable/frogs" />
+                android:src="@drawable/rain" />
 
             <ImageView
                 android:id="@+id/sixth"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:src="@drawable/crickets" />
+                android:src="@drawable/thunder" />
         </TableRow>
 
         <TableRow
@@ -139,7 +139,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:clickable="true"
-                android:src="@drawable/rain" />
+                android:src="@drawable/owl" />
 
             <ImageView
                 android:id="@+id/eighth"
@@ -148,14 +148,14 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:clickable="true"
-                android:src="@drawable/rain" />
+                android:src="@drawable/fire" />
 
             <ImageView
                 android:id="@+id/ninth"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:src="@drawable/rain" />
+                android:src="@drawable/leaves" />
         </TableRow>
     </TableLayout>
 
