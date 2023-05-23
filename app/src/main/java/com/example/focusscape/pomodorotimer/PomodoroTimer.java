@@ -6,8 +6,11 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -16,9 +19,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.focusscape.DatabaseHelper;
 import com.example.focusscape.R;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class PomodoroTimer extends AppCompatActivity implements PomodoroSettingsFragment.SettingsDialogListener {
@@ -122,6 +128,7 @@ public class PomodoroTimer extends AppCompatActivity implements PomodoroSettings
 
     public void startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -132,11 +139,65 @@ public class PomodoroTimer extends AppCompatActivity implements PomodoroSettings
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                mTimeLeftInMillis = 0;
                 if(mIsWorking) {
                     mIsWorking = false;
+                    // Get the current date
+                    Date currentDate = new Date();
+
+                    // Define the desired date format
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+                    // Format the date as a string
+                    String dateString = dateFormat.format(currentDate);
+
+                    boolean dateExists = dbHelper.doesDateExist(dateString);
+                    SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+                    // Specify the table name
+                    String tableName = "pomodoroTable";
+
+                    if(dateExists) {
+                        // Specify the columns to retrieve
+                        String[] columns = {"pomodoros"};
+
+                        // Write the selection criteria
+                        String selection = "date = ?";  // Check if the "date" column matches the desired date
+
+                        // Specify the selection arguments
+                        String[] selectionArgs = {dateString};
+
+                        // Execute the query
+                        Cursor cursor = database.query(tableName, columns, selection, selectionArgs, null, null, null);
+
+                        int resultPomodoros = 0;
+
+                        if (cursor.moveToFirst()) {
+                            // If the cursor is not empty, retrieve the pomodoros value
+                            resultPomodoros = cursor.getInt(cursor.getColumnIndex("pomodoros"));
+                            resultPomodoros++;
+                        }
+                        // Close the cursor
+                        cursor.close();
+
+                        ContentValues values = new ContentValues();
+                        values.put("pomodoros", resultPomodoros);
+                        int rowsAffected = database.update(tableName, values, selection, selectionArgs);
+                        System.out.println("Rows affected: " + rowsAffected + " Count: " +
+                                resultPomodoros);
+                    } else {
+                        ContentValues values = new ContentValues();
+                        values.put("date", dateString);
+                        long rowId = database.insert(tableName, null, values);
+                        System.out.println("Successfully inserted date and pomodoro count!");
+                        System.out.println("RowID: " + rowId);
+                    }
+
+                    database.close();
                 } else {
                     mIsWorking = true;
                 }
+                updateCountDownTextAndIndicator();
                 updateTimerInterface();
             }
         }.start();
@@ -283,7 +344,9 @@ public class PomodoroTimer extends AppCompatActivity implements PomodoroSettings
         editor.putLong("breakTimeInMillis",mBreakTimeInMillis);
         editor.apply();
 
-        pauseTimer();
+        if(mCountDownTimer != null) {
+            pauseTimer();
+        }
         resetTimer();
     }
 }

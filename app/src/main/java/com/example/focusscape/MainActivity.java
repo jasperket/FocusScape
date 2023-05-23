@@ -15,10 +15,11 @@ import android.widget.Button;
 import com.example.focusscape.pomodorotimer.PomodoroTimer;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnSetReminder;
-    Button btnPomodoro;
-    Button btnEnvSetup;
-    Button btnNoisePlayer;
+    private Button btnSetReminder;
+    private Button btnPomodoro;
+    private Button btnEnvSetup;
+    private Button btnNoisePlayer;
+    private Button btnCalendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,15 @@ public class MainActivity extends AppCompatActivity {
         btnPomodoro = findViewById(R.id.btnPomodoroAct);
         btnEnvSetup = findViewById(R.id.btnEnvSetupAct);
         btnNoisePlayer = findViewById(R.id.btnNoisePlayer);
+        btnCalendar = findViewById(R.id.btnCalendarAct);
+
+        btnCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), CalendarAct.class);
+                startActivity(intent);
+            }
+        });
         btnPomodoro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

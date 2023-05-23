@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.focusscape.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -42,17 +43,31 @@ public class PomodoroSettingsFragment extends DialogFragment {
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        dialogInterface.cancel();
                     }
                 })
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        if(editTextWorkMins.getText().toString().equals("")) {
+                            Toast.makeText(getContext(),
+                                    "Work duration no input! Timer unchanged.",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if(editTextBreakMins.getText().toString().equals("")) {
+                            Toast.makeText(getContext(),
+                                    "Break duration no input! Timer unchanged.",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         int workMins = Integer.parseInt(editTextWorkMins.getText().toString());
                         long workDurationMillis = workMins * 60000L;
 
                         int breakMins = Integer.parseInt(editTextBreakMins.getText().toString());
                         long breakDurationMillis = breakMins * 60000L;
+
                         listener.applyTexts(workDurationMillis,breakDurationMillis);
                     }
                 });
