@@ -41,12 +41,12 @@
         android:id="@+id/txtReminderHeadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Set Reminder"
         android:textAlignment="textStart"
-        android:textSize="36sp"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/button" />
 
     <TextView
         android:id="@+id/txtReminderTitle"
