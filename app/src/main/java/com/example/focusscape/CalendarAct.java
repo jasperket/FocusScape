@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class CalendarAct extends AppCompatActivity {
+public class CalendarAct extends AppCompatActivity implements CalendarViewHolder.DeleteReminderListener {
 
     private CalendarView calendarView;
     private String currentDate;
@@ -153,5 +153,36 @@ public class CalendarAct extends AppCompatActivity {
         return sdf.format(calendar.getTime());
     }
 
+    @Override
+    public void reminderDelete(String time, String notes) {
+        // Get a writable instance of the database
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
 
+        // Define the table name and the column names
+        String tableName = "calendarTable";
+        String timeColumnName = "time";
+        String notesColumnName = "notes";
+
+        // Build the selection criteria
+        String selection = timeColumnName + " = ? AND " + notesColumnName + " = ?";
+        String[] selectionArgs = { time, notes };
+
+        // Delete the row(s) matching the criteria
+        int deletedRows = database.delete(tableName, selection, selectionArgs);
+
+        // Check the number of rows deleted
+        if (deletedRows > 0) {
+            // Row(s) deleted successfully
+            System.out.println("Successfully deleted!");
+        } else {
+            // No rows deleted or an error occurred
+            System.out.println("Error");
+        }
+
+        // Close the database connection
+        database.close();
+
+        calendarItems = getDataFromDatabase();
+        updateRecyclerReminder();
+    }
 }

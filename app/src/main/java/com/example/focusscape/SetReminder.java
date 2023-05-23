@@ -45,8 +45,6 @@ public class SetReminder extends AppCompatActivity {
     private String endString;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
