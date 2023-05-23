@@ -55,4 +55,16 @@
         app:layout_constraintStart_toStartOf="@+id/txtCalendarDate"
         app:layout_constraintTop_toBottomOf="@+id/txtCalendarDate" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerReminder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/calendarView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtPomodoroCount"
+        app:layout_constraintTop_toBottomOf="@+id/txtPomodoroCount" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

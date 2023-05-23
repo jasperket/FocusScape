@@ -2,6 +2,8 @@ package com.example.focusscape;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,8 +28,10 @@ import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class SetReminder extends AppCompatActivity {
 
@@ -39,6 +43,9 @@ public class SetReminder extends AppCompatActivity {
     private String dateString;
     private String startString;
     private String endString;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,7 @@ public class SetReminder extends AppCompatActivity {
         eTxtReminderDate.setShowSoftInputOnFocus(false);
         eTxtReminderStart.setShowSoftInputOnFocus(false);
         eTxtReminderEnd.setShowSoftInputOnFocus(false);
+
         eTxtReminderDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -107,6 +115,8 @@ public class SetReminder extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void showTimePickerDialog(TextInputEditText eTxt, boolean isStart) {
         MaterialTimePicker.Builder builder = new MaterialTimePicker.Builder();
