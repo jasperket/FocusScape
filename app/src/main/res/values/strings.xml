@@ -3,4 +3,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="descPomodoroTimerSettings">Pomodoro Timer Settings</string>
+    <string name="SetReminderBack">Go back to menu</string>
 </resources>
