@@ -33,6 +33,7 @@
         <ImageView
             android:id="@+id/btnSetting"
             android:layout_width="wrap_content"
+            android:visibility="invisible"
             android:layout_height="75dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/settings" />
@@ -43,11 +44,12 @@
             android:layout_height="75dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:onClick="pausePlay"
+            android:onClick="togglePlay"
             app:srcCompat="@drawable/play_circle" />
 
         <ImageView
             android:id="@+id/btnTimer"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="75dp"
             android:layout_weight="1"
@@ -77,6 +79,7 @@
 
         <Button
             android:id="@+id/btnScene3"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
