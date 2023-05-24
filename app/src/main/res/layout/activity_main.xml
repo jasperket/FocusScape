@@ -39,37 +39,13 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSetReminderAct" />
 
     <Button
-        android:id="@+id/btnEnvSetupAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Environment Setup"
-        app:layout_constraintBottom_toTopOf="@+id/btnNoisePlayer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalendarAct"
-        app:layout_constraintVertical_bias="0.74" />
-
-    <Button
-        android:id="@+id/btnPomoTrackerAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pomodoro Tracker"
-        app:layout_constraintBottom_toTopOf="@+id/btnEnvSetupAct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalendarAct" />
-
-    <Button
         android:id="@+id/btnNoisePlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="250dp"
         android:text="NoiserPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalendarAct"
-        app:layout_constraintVertical_bias="0.979" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCalendarAct" />
 </androidx.constraintlayout.widget.ConstraintLayout>

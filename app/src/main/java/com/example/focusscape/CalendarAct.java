@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
@@ -18,7 +21,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class CalendarAct extends AppCompatActivity {
+public class CalendarAct extends AppCompatActivity implements CalendarViewHolder.DeleteReminderListener {
 
     private CalendarView calendarView;
     private String currentDate;
@@ -29,6 +32,8 @@ public class CalendarAct extends AppCompatActivity {
     private CalendarAdapter adapterReminder;
     private List<CalendarItem> calendarItems;
     private DatabaseHelper dbHelper;
+
+    private Button btnBackFromCalendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,7 @@ public class CalendarAct extends AppCompatActivity {
         calendarView = findViewById(R.id.calendarView);
         txtCalendarDate = findViewById(R.id.txtCalendarDate);
         txtPomodoroCount = findViewById(R.id.txtPomodoroCount);
+        btnBackFromCalendar = findViewById(R.id.btnBackFromCalendar);
 
         dbHelper = new DatabaseHelper(this);
 
@@ -60,6 +66,14 @@ public class CalendarAct extends AppCompatActivity {
                 calendarItems = getDataFromDatabase();
                 updateInterface();
                 updateRecyclerReminder();
+            }
+        });
+
+        btnBackFromCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -153,5 +167,36 @@ public class CalendarAct extends AppCompatActivity {
         return sdf.format(calendar.getTime());
     }
 
+    @Override
+    public void reminderDelete(String time, String notes) {
+        // Get a writable instance of the database
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
 
+        // Define the table name and the column names
+        String tableName = "calendarTable";
+        String timeColumnName = "time";
+        String notesColumnName = "notes";
+
+        // Build the selection criteria
+        String selection = timeColumnName + " = ? AND " + notesColumnName + " = ?";
+        String[] selectionArgs = { time, notes };
+
+        // Delete the row(s) matching the criteria
+        int deletedRows = database.delete(tableName, selection, selectionArgs);
+
+        // Check the number of rows deleted
+        if (deletedRows > 0) {
+            // Row(s) deleted successfully
+            System.out.println("Successfully deleted!");
+        } else {
+            // No rows deleted or an error occurred
+            System.out.println("Error");
+        }
+
+        // Close the database connection
+        database.close();
+
+        calendarItems = getDataFromDatabase();
+        updateRecyclerReminder();
+    }
 }

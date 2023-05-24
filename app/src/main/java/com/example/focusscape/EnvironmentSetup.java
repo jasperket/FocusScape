@@ -59,7 +59,7 @@ public class EnvironmentSetup extends AppCompatActivity {
         btnStartWorking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), PomodoroTimer.class);
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

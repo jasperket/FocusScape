@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.focusscape.DatabaseHelper;
+import com.example.focusscape.MainActivity;
 import com.example.focusscape.R;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
@@ -51,6 +52,7 @@ public class PomodoroTimer extends AppCompatActivity implements PomodoroSettings
     private CircularProgressIndicator timeCircularIndicator;
     private Button btnPomodoroSettings;
     private TextView txtIsWorking;
+    private Button btnBackFromPomodoro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class PomodoroTimer extends AppCompatActivity implements PomodoroSettings
         mButtonStartPause = findViewById(R.id.btnStartPause);
         mButtonReset = findViewById(R.id.btnReset);
         txtIsWorking = findViewById(R.id.txtIsWorking);
+        btnBackFromPomodoro = findViewById(R.id.btnBackFromPomodoro);
 
         timeCircularIndicator = findViewById(R.id.cpiTime);
         btnPomodoroSettings = findViewById(R.id.btnPomodoroTimerSettings);
@@ -98,8 +101,15 @@ public class PomodoroTimer extends AppCompatActivity implements PomodoroSettings
                 resetTimer();
             }
         });
-
+        btnBackFromPomodoro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
         createNotificationChannel();
+
     }
 
     private void openDialog() {

@@ -17,7 +17,6 @@ import com.example.focusscape.pomodorotimer.PomodoroTimer;
 public class MainActivity extends AppCompatActivity {
     private Button btnSetReminder;
     private Button btnPomodoro;
-    private Button btnEnvSetup;
     private Button btnNoisePlayer;
     private Button btnCalendar;
     @Override
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnSetReminder = findViewById(R.id.btnSetReminderAct);
         btnPomodoro = findViewById(R.id.btnPomodoroAct);
-        btnEnvSetup = findViewById(R.id.btnEnvSetupAct);
         btnNoisePlayer = findViewById(R.id.btnNoisePlayer);
         btnCalendar = findViewById(R.id.btnCalendarAct);
 
@@ -46,13 +44,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnEnvSetup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EnvironmentSetup.class);
-                startActivity(intent);
-            }
-        });
 
         btnSetReminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnEnvSetup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EnvironmentSetup.class);
-                startActivity(intent);
-            }
-        });
 
         btnSetReminder.setOnClickListener(new View.OnClickListener() {
             @Override
