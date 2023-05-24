@@ -26,6 +26,7 @@ public class NoisePlayer extends AppCompatActivity {
     MediaPlayer player1, player2, player3, player4, player5, player6, player7,player8, player9;
     ArrayList<MediaPlayer> player;
     boolean isPlaying;
+    int selectedscene;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class NoisePlayer extends AppCompatActivity {
         btnscene2 = findViewById(R.id.btnScene2);
         btnscene3 = findViewById(R.id.btnScene3);
         isPlaying = false;
+        selectedscene = 1;
         frgscene1 = new Scene1Fragment();
         frgscene2 = new Scene2Fragment();
         frgscene3 = new Scene3Fragment();
@@ -48,6 +50,7 @@ public class NoisePlayer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 changeScene(frgscene1);
+                selectedscene = 1;
             }
         });
 
@@ -55,15 +58,16 @@ public class NoisePlayer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 changeScene(frgscene2);
+                selectedscene = 2;
             }
         });
 
-        btnscene3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeScene(frgscene3);
-            }
-        });
+//        btnscene3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                changeScene(frgscene3);
+//            }
+//        });
 
 
     }
@@ -77,7 +81,7 @@ public class NoisePlayer extends AppCompatActivity {
 
     public void togglePlay(View v){
         if(isPlaying == false){
-            if(player1 == null && player2 == null && player3 == null && player4 == null && player5 == null && player6 == null && player7 == null && player8 == null && player9 == null) {
+            if(selectedscene == 1 && player1 == null && player2 == null && player3 == null && player4 == null && player5 == null && player6 == null && player7 == null && player8 == null && player9 == null) {
                 player1 = MediaPlayer.create(this,R.raw.birds);
                 player2 = MediaPlayer.create(this, R.raw.frogs);
                 player3 = MediaPlayer.create(this, R.raw.crickets);
@@ -87,6 +91,18 @@ public class NoisePlayer extends AppCompatActivity {
                 player7 = MediaPlayer.create(this, R.raw.owl);
                 player8 = MediaPlayer.create(this, R.raw.fire);
                 player9 = MediaPlayer.create(this, R.raw.leaves);
+            }
+
+            if(selectedscene == 2 && player1 == null && player2 == null && player3 == null && player4 == null && player5 == null && player6 == null && player7 == null && player8 == null && player9 == null) {
+                player1 = MediaPlayer.create(this,R.raw.waves);
+                player2 = MediaPlayer.create(this, R.raw.seagull);
+                player3 = MediaPlayer.create(this, R.raw.waterwalking);
+                player4 = MediaPlayer.create(this, R.raw.wind);
+                player5 = MediaPlayer.create(this, R.raw.rain);
+                player6 = MediaPlayer.create(this, R.raw.thunder);
+                player7 = MediaPlayer.create(this, R.raw.harbor);
+                player8 = MediaPlayer.create(this, R.raw.whale);
+                player9 = MediaPlayer.create(this, R.raw.fire);
             }
             player1.setLooping(true);
             player2.setLooping(true);
@@ -108,6 +124,7 @@ public class NoisePlayer extends AppCompatActivity {
             player9.start();
             isPlaying = true;
         }else{
+
             stopPlayer();
             isPlaying = false;
         }
@@ -141,6 +158,8 @@ public class NoisePlayer extends AppCompatActivity {
         }
 
     }
+
+
 
 
 }

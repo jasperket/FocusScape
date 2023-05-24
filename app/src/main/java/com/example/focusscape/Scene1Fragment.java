@@ -1,5 +1,6 @@
 package com.example.focusscape;
 
+import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.widget.ImageView;
 
 public class Scene1Fragment extends Fragment implements View.OnClickListener {
     View view;
-    ImageView rain, wave, fire, bird, frog, cricket;
+    ImageView rain, wave, fire, bird, frog, cricket, back;
 
     int selected;
     @Override
@@ -27,6 +28,7 @@ public class Scene1Fragment extends Fragment implements View.OnClickListener {
         bird = view.findViewById(R.id.fourth);
         frog = view.findViewById(R.id.fifth);
         cricket = view.findViewById(R.id.sixth);
+        back = view.findViewById(R.id.btnBack);
 
         rain.setOnClickListener(this);
         wave.setOnClickListener(this);
@@ -34,6 +36,8 @@ public class Scene1Fragment extends Fragment implements View.OnClickListener {
         bird.setOnClickListener(this);
         frog.setOnClickListener(this);
         cricket.setOnClickListener(this);
+        back.setOnClickListener(this);
+
 
         selected = 1;
         changeSelected(selected);
@@ -62,6 +66,10 @@ public class Scene1Fragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.sixth:
                 selected = 6;
+                break;
+            case R.id.btnBack:
+                Intent intent = new Intent(view.getContext(),MainActivity.class);
+                startActivity(intent);
                 break;
         }
         changeSelected(selected);
@@ -95,4 +103,7 @@ public class Scene1Fragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+
+
 }
