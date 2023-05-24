@@ -19,6 +19,7 @@
             android:exported="false" />
 
         <receiver android:name=".pomodorotimer.PomodoroAlarmReceiver" />
+        <receiver android:name=".SetReminderAlarmReceiver" />
 
         <activity
             android:name=".EnvironmentSetup"
