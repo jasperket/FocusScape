@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetReminder">
+    tools:context=".setreminder.SetReminder"
+    android:background="@color/blue_1000">
 
     <Button
         android:id="@+id/btnBackFromSetReminder"
         style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/SetReminderBack"
         app:icon="@drawable/baseline_arrow_back_24"
         app:iconSize="24dp"
@@ -28,12 +30,15 @@
         app:layout_constraintEnd_toEndOf="@+id/txtReminderHeadline"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtReminderTitle"
-        app:layout_constraintTop_toBottomOf="@+id/txtReminderTitle">
+        app:layout_constraintTop_toBottomOf="@+id/txtReminderTitle"
+        app:boxBackgroundColor="@color/blue_900"
+        android:textColorHint="@color/blue_400">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/eTxtReminderName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="14sp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,6 +48,7 @@
         android:layout_height="wrap_content"
         android:text="Set Reminder"
         android:textAlignment="textStart"
+        android:textColor="@color/blue_100"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnBackFromSetReminder"
         app:layout_constraintStart_toEndOf="@+id/btnBackFromSetReminder"
@@ -52,10 +58,12 @@
         android:id="@+id/txtReminderTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Title"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/txtReminderHeadline"
+        android:textColor="@color/blue_100"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtReminderHeadline" />
 
     <TextView
@@ -64,24 +72,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Date"
-        android:textSize="18sp"
+        android:textColor="@color/blue_100"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/txtReminderTitle"
         app:layout_constraintTop_toBottomOf="@+id/filledTextField" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/eTxtLayReminderDate"
-        style="?attr/textInputFilledStyle"
-        android:layout_width="150dp"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="MM/DD/YYYY"
+        app:layout_constraintEnd_toStartOf="@+id/txtReminderEnd"
         app:layout_constraintStart_toStartOf="@+id/txtReminderDate"
-        app:layout_constraintTop_toBottomOf="@+id/txtReminderDate">
+        app:layout_constraintTop_toBottomOf="@+id/txtReminderDate"
+        android:textColorHint="@color/blue_400"
+        app:boxStrokeColor="@color/selector_text_field_outline"
+        app:startIconDrawable="@drawable/baseline_edit_calendar_24"
+        app:startIconTint="@color/blue_100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/eTxtReminderDate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,24 +106,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Start Time"
-        android:textSize="18sp"
+        android:textColor="@color/blue_100"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/txtReminderTitle"
         app:layout_constraintTop_toBottomOf="@+id/eTxtLayReminderDate" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField3"
-        style="?attr/textInputFilledStyle"
+        style="?attr/textInputOutlinedStyle"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Time"
         app:layout_constraintStart_toStartOf="@+id/txtReminderStart"
-        app:layout_constraintTop_toBottomOf="@+id/txtReminderStart">
+        app:layout_constraintTop_toBottomOf="@+id/txtReminderStart"
+        android:textColorHint="@color/blue_400"
+        app:boxStrokeColor="@color/selector_text_field_outline"
+        app:startIconDrawable="@drawable/baseline_access_time_24"
+        app:startIconTint="@color/blue_100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/eTxtReminderStart"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,26 +137,32 @@
         android:id="@+id/txtReminderEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="End TIme (optional)"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/filledTextField3"
+        android:text="End TIme"
+        android:textColor="@color/blue_100"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/filledTextField4"
         app:layout_constraintTop_toTopOf="@+id/txtReminderStart" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField4"
-        style="?attr/textInputFilledStyle"
+        style="?attr/textInputOutlinedStyle"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:hint="Time"
-        app:layout_constraintStart_toStartOf="@+id/txtReminderEnd"
-        app:layout_constraintTop_toBottomOf="@+id/txtReminderEnd">
+        app:layout_constraintEnd_toEndOf="@+id/filledTextField5"
+        app:layout_constraintTop_toBottomOf="@+id/txtReminderEnd"
+        android:textColorHint="@color/blue_400"
+        app:boxStrokeColor="@color/selector_text_field_outline"
+        app:startIconDrawable="@drawable/baseline_access_time_24"
+        app:startIconTint="@color/blue_100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/eTxtReminderEnd"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,10 +171,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Notes (optional)"
-        android:textSize="18sp"
+        android:text="Notes"
+        android:textColor="@color/blue_100"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/txtReminderTitle"
-        app:layout_constraintTop_toBottomOf="@+id/filledTextField4" />
+        app:layout_constraintTop_toBottomOf="@+id/filledTextField4"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField5"
@@ -156,9 +185,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Enter reminder notes"
-        app:layout_constraintEnd_toEndOf="@+id/filledTextField4"
+        app:layout_constraintEnd_toEndOf="@+id/btnSetReminder"
         app:layout_constraintStart_toStartOf="@+id/txtReminderNotes"
-        app:layout_constraintTop_toBottomOf="@+id/txtReminderNotes">
+        app:layout_constraintTop_toBottomOf="@+id/txtReminderNotes"
+        app:boxBackgroundColor="@color/blue_900"
+        android:textColorHint="@color/blue_400">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/eTxtReminderNotes"
@@ -170,13 +201,15 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSetReminder"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Set Reminder"
+        android:layout_marginEnd="32dp"
+        android:text="SET REMINDER"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

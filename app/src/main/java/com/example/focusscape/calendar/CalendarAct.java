@@ -1,4 +1,4 @@
-package com.example.focusscape;
+package com.example.focusscape.calendar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
+
+import com.example.focusscape.DatabaseHelper;
+import com.example.focusscape.MainActivity;
+import com.example.focusscape.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

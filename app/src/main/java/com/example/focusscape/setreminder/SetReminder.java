@@ -1,38 +1,34 @@
-package com.example.focusscape;
+package com.example.focusscape.setreminder;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Pair;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
+import com.example.focusscape.DatabaseHelper;
+import com.example.focusscape.MainActivity;
+import com.example.focusscape.R;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-import com.google.android.material.internal.ViewUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
-import org.w3c.dom.Text;
-
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class SetReminder extends AppCompatActivity {
 
@@ -45,7 +41,12 @@ public class SetReminder extends AppCompatActivity {
     private String startString;
     private String endString;
     private Button btnBackFromSetReminder;
-
+    private TextInputEditText eTxtReminderName;
+    private int year;
+    private int month;
+    private int day;
+    private int hour;
+    private int minute;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class SetReminder extends AppCompatActivity {
         eTxtReminderEnd = findViewById(R.id.eTxtReminderEnd);
         btnReminderSet = findViewById(R.id.btnSetReminder);
         btnBackFromSetReminder = findViewById(R.id.btnBackFromSetReminder);
+        eTxtReminderName = findViewById(R.id.eTxtReminderName);
 
         eTxtReminderDate.setShowSoftInputOnFocus(false);
         eTxtReminderStart.setShowSoftInputOnFocus(false);
@@ -119,10 +121,35 @@ public class SetReminder extends AppCompatActivity {
                 long rowId = database.insert("calendarTable",null,values);
                 System.out.println("Success! rowId: " +rowId);
                 database.close();
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month-1);  // Note: Months are zero-based
+                calendar.set(Calendar.DAY_OF_MONTH, day);
+                calendar.set(Calendar.HOUR_OF_DAY, hour);
+                calendar.set(Calendar.MINUTE, minute);
+                Date alarmDate = calendar.getTime();
+
+                // Set the alarm using the AlarmHelper class
+                String reminderName = eTxtReminderName.getText().toString();
+                SetReminderAlarmHelper.setAlarm(view.getContext(), alarmDate,reminderName);
             }
         });
+        createNotificationChannel();
     }
 
+    private void createNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "PomodoroAlarm";
+            String description = "Channel for alarm";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("focusscapealarm",name,importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
 
 
     private void showTimePickerDialog(TextInputEditText eTxt, boolean isStart) {
@@ -134,8 +161,8 @@ public class SetReminder extends AppCompatActivity {
         timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int hour = timePicker.getHour(); // Get the selected hour (0-23)
-                int minute = timePicker.getMinute(); // Get the selected minute
+                hour = timePicker.getHour(); // Get the selected hour (0-23)
+                minute = timePicker.getMinute(); // Get the selected minute
 
                 // Convert the hour to 12-hour format
                 int hour12 = hour % 12;
@@ -179,9 +206,17 @@ public class SetReminder extends AppCompatActivity {
             @Override
             public void onPositiveButtonClick(Long selection) {
                 Date reminderDate = new Date(selection);
+
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                 dateString = dateFormat.format(reminderDate);
                 eTxtReminderDate.setText(dateString);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(reminderDate);
+
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH) + 1; // Adding 1, as months are zero-based
+                day = calendar.get(Calendar.DAY_OF_MONTH);
             }
         });
 

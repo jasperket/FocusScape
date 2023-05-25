@@ -12,7 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.focusscape.calendar.CalendarAct;
 import com.example.focusscape.pomodorotimer.PomodoroTimer;
+import com.example.focusscape.setreminder.SetReminder;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnSetReminder;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         btnSetReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),SetReminder.class);
+                Intent intent = new Intent(view.getContext(), SetReminder.class);
                 startActivity(intent);
             }
         });

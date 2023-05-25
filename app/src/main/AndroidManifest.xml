@@ -9,28 +9,23 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/focusscape_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.FocusScape"
         tools:targetApi="31">
         <activity
-            android:name=".CalendarAct"
+            android:name=".calendar.CalendarAct"
             android:exported="false" />
 
         <receiver android:name=".pomodorotimer.PomodoroAlarmReceiver" />
+        <receiver android:name=".setreminder.SetReminderAlarmReceiver" />
 
         <activity
             android:name=".EnvironmentSetup"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
-            android:name=".SetReminder"
+            android:name=".setreminder.SetReminder"
             android:exported="false" />
         <activity
             android:name=".NoisePlayer"
@@ -41,6 +36,14 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"/>
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
