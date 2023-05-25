@@ -18,13 +18,10 @@ import java.util.ArrayList;
 
 public class NoisePlayer extends AppCompatActivity {
     ImageView play;
-    FragmentTransaction fragmentTransaction;
-    Button btnscene1, btnscene2, btnscene3;
+    Button btnscene1, btnscene2;
     Scene1Fragment frgscene1;
     Scene2Fragment frgscene2;
-    Scene3Fragment frgscene3;
     MediaPlayer player1, player2, player3, player4, player5, player6, player7,player8, player9;
-    ArrayList<MediaPlayer> player;
     boolean isPlaying;
     int selectedscene;
 
@@ -35,12 +32,10 @@ public class NoisePlayer extends AppCompatActivity {
         play = findViewById(R.id.btnPausePlay);
         btnscene1 = findViewById(R.id.btnScene1);
         btnscene2 = findViewById(R.id.btnScene2);
-        btnscene3 = findViewById(R.id.btnScene3);
         isPlaying = false;
         selectedscene = 1;
         frgscene1 = new Scene1Fragment();
         frgscene2 = new Scene2Fragment();
-        frgscene3 = new Scene3Fragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout,frgscene1);
@@ -61,13 +56,6 @@ public class NoisePlayer extends AppCompatActivity {
                 selectedscene = 2;
             }
         });
-
-//        btnscene3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                changeScene(frgscene3);
-//            }
-//        });
 
 
     }
