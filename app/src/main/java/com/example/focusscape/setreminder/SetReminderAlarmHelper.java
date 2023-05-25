@@ -1,4 +1,4 @@
-package com.example.focusscape;
+package com.example.focusscape.setreminder;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

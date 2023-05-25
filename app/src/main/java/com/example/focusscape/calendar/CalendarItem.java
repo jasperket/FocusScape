@@ -1,4 +1,4 @@
-package com.example.focusscape;
+package com.example.focusscape.calendar;
 
 public class CalendarItem {
     private String time;

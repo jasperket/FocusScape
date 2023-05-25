@@ -1,4 +1,4 @@
-package com.example.focusscape;
+package com.example.focusscape.setreminder;
 
 import android.Manifest;
 import android.app.PendingIntent;
@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.focusscape.pomodorotimer.PomodoroTimer;
+import com.example.focusscape.R;
 
 public class SetReminderAlarmReceiver extends BroadcastReceiver {
     @Override
