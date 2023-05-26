@@ -1,20 +1,25 @@
 package com.example.focusscape;
 
+
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
-import android.media.SoundPool;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
-public class Scene1Fragment extends Fragment implements View.OnClickListener {
+public class Scene1Fragment extends Fragment implements View.OnClickListener{
     View view;
     ImageView rain, wind, fire, bird, frog, cricket, back, owl, thunder, leaves;
+
+
 
     int selected;
     @Override
@@ -47,6 +52,7 @@ public class Scene1Fragment extends Fragment implements View.OnClickListener {
 
         selected = 1;
         changeSelected(selected);
+        passSelected(selected);
 
         return view;
     }
@@ -87,6 +93,7 @@ public class Scene1Fragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
         }
+        passSelected(selected);
         changeSelected(selected);
     }
 
@@ -132,5 +139,11 @@ public class Scene1Fragment extends Fragment implements View.OnClickListener {
     }
 
 
+    private void passSelected(int selected){
+        FragmentListener listener = (FragmentListener) getActivity();
+        if(listener != null){
+            listener.onDataReceived(selected);
+        }
+    }
 
 }

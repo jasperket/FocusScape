@@ -45,6 +45,7 @@ public class Scene2Fragment extends Fragment implements View.OnClickListener {
 
         selected = 1;
         changeSelected(selected);
+        passSelected(selected);
 
         return view;
     }
@@ -85,6 +86,7 @@ public class Scene2Fragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
         }
+        passSelected(selected);
         changeSelected(selected);
     }
 
@@ -106,7 +108,7 @@ public class Scene2Fragment extends Fragment implements View.OnClickListener {
                 seagull.setImageIcon(Icon.createWithResource(getActivity(),R.drawable.seagullselected));
                 break;
             case 3:
-                walkingwater.setImageIcon(Icon.createWithResource(getActivity(),R.drawable.walkingwater));
+                walkingwater.setImageIcon(Icon.createWithResource(getActivity(),R.drawable.walkingwaterselected));
                 break;
             case 4:
                 wind.setImageIcon(Icon.createWithResource(getActivity(),R.drawable.windselected));
@@ -126,6 +128,12 @@ public class Scene2Fragment extends Fragment implements View.OnClickListener {
             case 9:
                 fire.setImageIcon(Icon.createWithResource(getActivity(),R.drawable.fireselected));
                 break;
+        }
+    }
+    private void passSelected(int selected){
+        FragmentListener listener = (FragmentListener) getActivity();
+        if(listener != null){
+            listener.onDataReceived(selected);
         }
     }
 

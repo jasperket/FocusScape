@@ -11,7 +11,7 @@
           android:pathData="M188.29,3.32C86.72,3.32 4.4,85.64 4.4,187.22C4.4,288.78 86.72,371.12 188.29,371.12C289.85,371.12 372.19,288.78 372.19,187.22C372.19,85.64 289.85,3.32 188.29,3.32"/>
       <path
           android:pathData="M4.4,3.32L372.19,3.32L372.19,371.12L4.4,371.12ZM4.4,3.32"
-          android:fillColor="#2c7da0"
+          android:fillColor="#012A4a"
           android:fillType="nonZero"/>
     </group>
   </group>
