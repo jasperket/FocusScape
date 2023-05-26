@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TableRow
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue">
+
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/angle_small_left"
+            android:contentDescription="back button"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:text="Noise Player"
+            android:textColor="@color/light_blue"
+            android:textSize="42dp" />
+
+        </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/forestscene"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#A8D5E4"
+                        android:text="Forest Scene"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        android:textColor="@color/blue_1000"
+                        android:textSize="25dp" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/forestscene"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/first"
+                            android:layout_below="@+id/textView2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:foregroundTint="@color/dark_blue"
+                            android:src="@drawable/bird"
+                            android:contentDescription="birds"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Birds"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play birds"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/second"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/frogs"
+                            android:contentDescription="frogs"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Frogs"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play frogs"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/third"
+                            android:clickable="true"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:contentDescription="crickets"
+                            android:src="@drawable/crickets" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Crickets"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play3"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play crickets"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/fourth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:src="@drawable/wind"
+                            android:layout_margin="10dp"
+                            android:contentDescription="wind"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Wind"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play4"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play wind"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/fifth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:contentDescription="rain"
+                            android:clickable="true"
+                            android:src="@drawable/rain" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Rain"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play5"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play rain"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/sixth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:layout_margin="10dp"
+                            android:contentDescription="crickets"
+                            android:src="@drawable/thunder" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Thunder"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play6"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play thunder"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/owl"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:src="@drawable/owl"
+                            android:layout_margin="10dp"
+                            android:contentDescription="owls"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Owls"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play7"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play owls"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/eighth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:src="@drawable/fire"
+                            android:layout_margin="10dp"
+                            android:contentDescription="fire"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Fire"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play8"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play fire"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/ninth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:layout_margin="10dp"
+                            android:contentDescription="leaves"
+                            android:src="@drawable/leaves" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Leaves"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play9"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play leaves"/>
+
+                    </TableRow>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/forestscene"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#A8D5E4"
+                        android:text="Forest Scene"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        android:textColor="@color/blue_1000"
+                        android:textSize="25dp" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/forestscene"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/first"
+                            android:layout_below="@+id/textView2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:foregroundTint="@color/dark_blue"
+                            android:src="@drawable/bird"
+                            android:contentDescription="birds"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Birds"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play birds"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/second"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/frogs"
+                            android:contentDescription="frogs"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Frogs"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play frogs"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/third"
+                            android:clickable="true"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:contentDescription="crickets"
+                            android:src="@drawable/crickets" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Crickets"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play3"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play crickets"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/fourth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:src="@drawable/wind"
+                            android:layout_margin="10dp"
+                            android:contentDescription="wind"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Wind"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play4"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play wind"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/fifth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:contentDescription="rain"
+                            android:clickable="true"
+                            android:src="@drawable/rain" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Rain"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play5"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play rain"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/sixth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:layout_margin="10dp"
+                            android:contentDescription="crickets"
+                            android:src="@drawable/thunder" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Thunder"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play6"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play thunder"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/owl"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:src="@drawable/owl"
+                            android:layout_margin="10dp"
+                            android:contentDescription="owls"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Owls"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play7"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play owls"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/eighth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:src="@drawable/fire"
+                            android:layout_margin="10dp"
+                            android:contentDescription="fire"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Fire"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play8"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play fire"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp">
+                        <ImageView
+                            android:id="@+id/ninth"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:clickable="true"
+                            android:layout_margin="10dp"
+                            android:contentDescription="leaves"
+                            android:src="@drawable/leaves" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:drawableTint="@color/blue_1000"
+                            android:text="Leaves"
+                            android:textColor="@color/blue_1000"
+                            android:textSize="22dp" />
+
+                        <ImageView
+                            android:id="@+id/play9"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
+                            android:clickable="true"
+                            android:onClick="togglePlay"
+                            android:layout_alignParentEnd="true"
+                            app:srcCompat="@drawable/play_circle"
+                            app:tint="@color/blue_700"
+                            android:contentDescription="play leaves"/>
+
+                    </TableRow>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
