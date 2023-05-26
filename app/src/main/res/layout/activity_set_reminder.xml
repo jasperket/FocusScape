@@ -114,7 +114,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField3"
         style="?attr/textInputOutlinedStyle"
-        android:layout_width="125dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Time"
@@ -146,15 +146,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField4"
         style="?attr/textInputOutlinedStyle"
-        android:layout_width="125dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:hint="Time"
-        app:layout_constraintEnd_toEndOf="@+id/filledTextField5"
-        app:layout_constraintTop_toBottomOf="@+id/txtReminderEnd"
         android:textColorHint="@color/blue_400"
         app:boxStrokeColor="@color/selector_text_field_outline"
+        app:layout_constraintEnd_toEndOf="@+id/filledTextField5"
+        app:layout_constraintTop_toBottomOf="@+id/txtReminderEnd"
         app:startIconDrawable="@drawable/baseline_access_time_24"
         app:startIconTint="@color/blue_100">
 

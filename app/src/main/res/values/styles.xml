@@ -11,4 +11,8 @@
     <style name="CustomOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/selector_text_field_outline</item>
     </style>
+
+    <style name="CustomTitle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="colorOnSurface">@color/blue_100</item>
+    </style>
 </resources>

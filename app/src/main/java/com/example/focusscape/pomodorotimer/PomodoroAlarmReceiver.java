@@ -23,7 +23,7 @@ public class PomodoroAlarmReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent2,PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "focusscapealarm")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.focusscape_logo)
                 .setContentTitle("Pomodoro alarm")
                 .setContentText("Pomodoro session ended")
                 .setAutoCancel(true)
