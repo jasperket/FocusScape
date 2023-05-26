@@ -4,64 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EnvironmentSetup">
+    tools:context=".EnvironmentSetup"
+    android:background="@color/blue_1000">
 
-    <CheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkBoxPhoneAway"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
         android:text="Put away your phone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textEnvironmentSetup" />
+        android:textColor="@color/blue_100"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/checkBoxWorkRelated"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxWorkRelated" />
 
     <TextView
         android:id="@+id/textEnvironmentSetup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:text="Environment Setup"
+        android:textColor="@color/blue_100"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/checkBoxPhoneAway"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <CheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkBoxWorkRelated"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
         android:text="Close all tabs not related to your work."
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxPhoneAway" />
+        android:textColor="@color/blue_100"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/checkBoxRehydrate"
+        app:layout_constraintEnd_toEndOf="@+id/btnStartWorking"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxRehydrate" />
 
-    <CheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkBoxRehydrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:text="Rehydrate, drink some water."
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxWorkRelated" />
+        android:textColor="@color/blue_100"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxToDo"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkBoxToDo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:text="List down the things you need to do for today."
+        android:textColor="@color/blue_100"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/btnStartWorking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxRehydrate" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStartWorking"
-        android:layout_width="wrap_content"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:enabled="false"
         android:text="START WORKING"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxToDo"
-        android:background="@color/grey"
-        android:textColor="@color/black"
-        android:enabled="false"/>
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxToDo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

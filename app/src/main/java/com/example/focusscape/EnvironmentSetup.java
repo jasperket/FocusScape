@@ -9,16 +9,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.example.focusscape.pomodorotimer.PomodoroTimer;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 import java.util.ArrayList;
 
 public class EnvironmentSetup extends AppCompatActivity {
 
-    CheckBox phoneAway;
-    CheckBox workRelated;
-    CheckBox rehydrate;
-    CheckBox toDo;
-    Button btnStartWorking;
+    MaterialCheckBox phoneAway;
+    MaterialCheckBox workRelated;
+    MaterialCheckBox rehydrate;
+    MaterialCheckBox toDo;
+    MaterialButton btnStartWorking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +46,8 @@ public class EnvironmentSetup extends AppCompatActivity {
                 public void onClick(View view) {
                     if(phoneAway.isChecked() && workRelated.isChecked() && rehydrate.isChecked() &&
                     toDo.isChecked()) {
-                        btnStartWorking.setBackgroundColor(getResources().getColor(R.color.purple_200));
-                        btnStartWorking.setTextColor(getResources().getColor(R.color.white));
                         btnStartWorking.setEnabled(true);
                     } else {
-                        btnStartWorking.setBackgroundColor(getResources().getColor(R.color.grey));
-                        btnStartWorking.setTextColor(getResources().getColor(R.color.black));
                         btnStartWorking.setEnabled(false);
                     }
                 }

@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <style name="CustomCalendarView" parent="@android:style/Widget.CalendarView">
+        <item name="android:dateTextAppearance">@style/CustomCalendarView.DateTextAppearance</item>
+    </style>
+
+    <style name="CustomCalendarView.DateTextAppearance" parent="@android:style/TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/blue_100</item> <!-- Set your desired text color -->
+    </style>
+
+    <style name="CustomOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/selector_text_field_outline</item>
+    </style>
+
+    <style name="CustomTitle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="colorOnSurface">@color/blue_100</item>
+    </style>
+</resources>

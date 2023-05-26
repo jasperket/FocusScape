@@ -12,21 +12,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class NoisePlayer extends AppCompatActivity {
+public class NoisePlayer extends AppCompatActivity implements FragmentListener, SeekBar.OnSeekBarChangeListener {
     ImageView play;
-    FragmentTransaction fragmentTransaction;
-    Button btnscene1, btnscene2, btnscene3;
+    Button btnscene1, btnscene2;
     Scene1Fragment frgscene1;
     Scene2Fragment frgscene2;
-    Scene3Fragment frgscene3;
     MediaPlayer player1, player2, player3, player4, player5, player6, player7,player8, player9;
-    ArrayList<MediaPlayer> player;
     boolean isPlaying;
+    SeekBar volume;
     int selectedscene;
+    int selected;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +36,15 @@ public class NoisePlayer extends AppCompatActivity {
         play = findViewById(R.id.btnPausePlay);
         btnscene1 = findViewById(R.id.btnScene1);
         btnscene2 = findViewById(R.id.btnScene2);
-        btnscene3 = findViewById(R.id.btnScene3);
+        volume =findViewById(R.id.skVolume);
+        volume.setMax(100);
         isPlaying = false;
         selectedscene = 1;
         frgscene1 = new Scene1Fragment();
         frgscene2 = new Scene2Fragment();
-        frgscene3 = new Scene3Fragment();
+
+        volume.setOnSeekBarChangeListener(this);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout,frgscene1);
@@ -62,13 +66,6 @@ public class NoisePlayer extends AppCompatActivity {
             }
         });
 
-//        btnscene3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                changeScene(frgscene3);
-//            }
-//        });
-
 
     }
 
@@ -81,7 +78,7 @@ public class NoisePlayer extends AppCompatActivity {
 
     public void togglePlay(View v){
         if(isPlaying == false){
-            if(selectedscene == 1 && player1 == null && player2 == null && player3 == null && player4 == null && player5 == null && player6 == null && player7 == null && player8 == null && player9 == null) {
+            if(player1 == null && player2 == null && player3 == null && player4 == null && player5 == null && player6 == null && player7 == null && player8 == null && player9 == null) {
                 player1 = MediaPlayer.create(this,R.raw.birds);
                 player2 = MediaPlayer.create(this, R.raw.frogs);
                 player3 = MediaPlayer.create(this, R.raw.crickets);
@@ -114,6 +111,7 @@ public class NoisePlayer extends AppCompatActivity {
             player8.setLooping(true);
             player9.setLooping(true);
 
+            player1.start();
             player2.start();
             player3.start();
             player4.start();
@@ -159,7 +157,79 @@ public class NoisePlayer extends AppCompatActivity {
 
     }
 
+    public MediaPlayer selectPlayer(int selected){
+        switch(selected){
+            case 1:
+                return player1;
+            case 2:
+                return player2;
+            case 3:
+                return player3;
+            case 4:
+                return player4;
+            case 5:
+                return player5;
+            case 6:
+                return player6;
+            case 7:
+                return player7;
+            case 8:
+                return player8;
+            case 9:
+                return player9;
+        }
+        return null;
+    }
 
 
+    @Override
+    public void onDataReceived(int selected) {
+        this.selected = selected;
+        System.out.println(selected);
+    }
 
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+        float vol = progress / 100f;
+
+        switch (selected) {
+            case 1:
+            player1.setVolume(vol, vol);
+            break;
+            case 2:
+            player2.setVolume(vol, vol);
+            break;
+            case 3:
+            player3.setVolume(vol, vol);
+            break;
+            case 4:
+            player4.setVolume(vol, vol);
+            break;
+            case 5:
+            player5.setVolume(vol, vol);
+            break;
+            case 6:
+            player6.setVolume(vol, vol);
+            break;
+            case 7:
+            player7.setVolume(vol, vol);
+            break;
+            case 8:
+            player8.setVolume(vol, vol);
+            break;
+            case 9:
+            player9.setVolume(vol, vol);
+            break;
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
 }
