@@ -15,12 +15,13 @@ import android.widget.Button;
 import com.example.focusscape.calendar.CalendarAct;
 import com.example.focusscape.pomodorotimer.PomodoroTimer;
 import com.example.focusscape.setreminder.SetReminder;
+import com.google.android.material.card.MaterialCardView;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnSetReminder;
-    private Button btnPomodoro;
-    private Button btnNoisePlayer;
-    private Button btnCalendar;
+    private MaterialCardView btnSetReminder;
+    private MaterialCardView btnPomodoro;
+    private MaterialCardView btnNoisePlayer;
+    private MaterialCardView btnCalendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

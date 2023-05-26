@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".pomodorotimer.PomodoroSettingsFragment">
+    tools:context=".pomodorotimer.PomodoroSettingsFragment"
+    android:background="@color/blue_1000">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtWorkMinuteInputLayout"
@@ -15,7 +16,9 @@
         android:hint="Duration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtWorkDuration">
+        app:layout_constraintTop_toBottomOf="@id/txtWorkDuration"
+        app:boxBackgroundColor="@color/blue_900"
+        android:textColorHint="@color/blue_400">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etxtWorkMinuteInputLayout"
@@ -35,8 +38,9 @@
         android:hint="Duration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@id/txtBreakDuration">
+        app:layout_constraintTop_toBottomOf="@id/txtBreakDuration"
+        app:boxBackgroundColor="@color/blue_900"
+        android:textColorHint="@color/blue_400">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etxtBreakMinuteInputLayout"
@@ -53,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Work Duration (minutes)"
+        android:textColor="@color/blue_100"
         app:layout_constraintStart_toStartOf="@id/txtWorkMinuteInputLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Break Duration (minutes)"
+        android:textColor="@color/blue_100"
         app:layout_constraintStart_toStartOf="@id/txtBreakMinuteInputLayout"
         app:layout_constraintTop_toBottomOf="@id/txtWorkMinuteInputLayout" />
 

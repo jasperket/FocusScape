@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -38,6 +40,11 @@ public class PomodoroSettingsFragment extends DialogFragment {
         editTextWorkMins = view.findViewById(R.id.etxtWorkMinuteInputLayout);
         editTextBreakMins = view.findViewById(R.id.etxtBreakMinuteInputLayout);
 
+        int backgroundColor = Color.parseColor("#012A4A"); // Replace with your color value
+
+        // Create a ColorDrawable with the color object
+        ColorDrawable backgroundColorDrawable = new ColorDrawable(backgroundColor);
+
         builder.setView(view)
                 .setTitle("Set Duration")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -70,7 +77,8 @@ public class PomodoroSettingsFragment extends DialogFragment {
 
                         listener.applyTexts(workDurationMillis,breakDurationMillis);
                     }
-                });
+                })
+                .setBackground(backgroundColorDrawable);
 
 
         return builder.create();
