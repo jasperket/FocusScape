@@ -33,7 +33,6 @@
         <ImageView
             android:id="@+id/btnSetting"
             android:layout_width="wrap_content"
-            android:visibility="invisible"
             android:layout_height="75dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/settings" />
@@ -49,7 +48,6 @@
 
         <ImageView
             android:id="@+id/btnTimer"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="75dp"
             android:layout_weight="1"
@@ -67,23 +65,20 @@
             android:id="@+id/btnScene1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:text="scene1" />
+            android:text="Forest" />
 
         <Button
             android:id="@+id/btnScene2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:text="scene2" />
+            android:text="Beach" />
 
-        <Button
-            android:id="@+id/btnScene3"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="scene3" />
     </LinearLayout>
 
 
