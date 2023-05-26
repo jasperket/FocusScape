@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.media.MediaParser;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -78,6 +79,7 @@ public class NoisePlayer extends AppCompatActivity implements FragmentListener, 
 
     public void togglePlay(View v){
         if(isPlaying == false){
+            play.setImageIcon(Icon.createWithResource(this, R.drawable.pause_circle));
             if(player1 == null && player2 == null && player3 == null && player4 == null && player5 == null && player6 == null && player7 == null && player8 == null && player9 == null) {
                 player1 = MediaPlayer.create(this,R.raw.birds);
                 player2 = MediaPlayer.create(this, R.raw.frogs);
@@ -122,7 +124,7 @@ public class NoisePlayer extends AppCompatActivity implements FragmentListener, 
             player9.start();
             isPlaying = true;
         }else{
-
+            play.setImageIcon(Icon.createWithResource(this, R.drawable.play_circle));
             stopPlayer();
             isPlaying = false;
         }
@@ -157,35 +159,9 @@ public class NoisePlayer extends AppCompatActivity implements FragmentListener, 
 
     }
 
-    public MediaPlayer selectPlayer(int selected){
-        switch(selected){
-            case 1:
-                return player1;
-            case 2:
-                return player2;
-            case 3:
-                return player3;
-            case 4:
-                return player4;
-            case 5:
-                return player5;
-            case 6:
-                return player6;
-            case 7:
-                return player7;
-            case 8:
-                return player8;
-            case 9:
-                return player9;
-        }
-        return null;
-    }
-
-
     @Override
     public void onDataReceived(int selected) {
         this.selected = selected;
-        System.out.println(selected);
     }
 
     @Override

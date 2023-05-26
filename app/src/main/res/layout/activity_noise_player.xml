@@ -50,11 +50,12 @@
 
 
         <ImageView
-            android:id="@+id/btnSetting"
-            android:layout_width="wrap_content"
+            android:id="@+id/scenePreview"
+            android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/settings" />
+
+            app:srcCompat="@drawable/rectangle_list" />
 
         <ImageView
             android:id="@+id/btnPausePlay"
@@ -70,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:contentDescription="Timer button"
+            android:visibility="invisible"
             app:srcCompat="@drawable/stopwatch" />
     </LinearLayout>
 

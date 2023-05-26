@@ -18,9 +18,6 @@ import android.widget.SeekBar;
 public class Scene1Fragment extends Fragment implements View.OnClickListener{
     View view;
     ImageView rain, wind, fire, bird, frog, cricket, back, owl, thunder, leaves;
-
-
-
     int selected;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
