@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.focusscape.DatabaseHelper;
 import com.example.focusscape.MainActivity;
@@ -133,6 +134,8 @@ public class SetReminder extends AppCompatActivity {
                 // Set the alarm using the AlarmHelper class
                 String reminderName = eTxtReminderName.getText().toString();
                 SetReminderAlarmHelper.setAlarm(view.getContext(), alarmDate,reminderName);
+
+                Toast.makeText(view.getContext(),"Reminder Set!",Toast.LENGTH_SHORT).show();
             }
         });
         createNotificationChannel();
