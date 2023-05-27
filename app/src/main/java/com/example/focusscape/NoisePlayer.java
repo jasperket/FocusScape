@@ -89,7 +89,7 @@ public class NoisePlayer extends AppCompatActivity implements FragmentListener, 
     public void togglePlay(View v){
         if(isPlaying == false){
             play.setImageIcon(Icon.createWithResource(this, R.drawable.pause_circle));
-            if(player1 == null && player2 == null && player3 == null && player4 == null && player5 == null && player6 == null && player7 == null && player8 == null && player9 == null) {
+            if(selectedscene == 1 && player1 == null && player2 == null && player3 == null && player4 == null && player5 == null && player6 == null && player7 == null && player8 == null && player9 == null) {
                 player1 = MediaPlayer.create(this,R.raw.birds);
                 player2 = MediaPlayer.create(this, R.raw.frogs);
                 player3 = MediaPlayer.create(this, R.raw.crickets);
@@ -176,35 +176,36 @@ public class NoisePlayer extends AppCompatActivity implements FragmentListener, 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
         float vol = progress / 100f;
-
-        switch (selected) {
-            case 1:
-            player1.setVolume(vol, vol);
-            break;
-            case 2:
-            player2.setVolume(vol, vol);
-            break;
-            case 3:
-            player3.setVolume(vol, vol);
-            break;
-            case 4:
-            player4.setVolume(vol, vol);
-            break;
-            case 5:
-            player5.setVolume(vol, vol);
-            break;
-            case 6:
-            player6.setVolume(vol, vol);
-            break;
-            case 7:
-            player7.setVolume(vol, vol);
-            break;
-            case 8:
-            player8.setVolume(vol, vol);
-            break;
-            case 9:
-            player9.setVolume(vol, vol);
-            break;
+        if(isPlaying) {
+            switch (selected) {
+                case 1:
+                    player1.setVolume(vol, vol);
+                    break;
+                case 2:
+                    player2.setVolume(vol, vol);
+                    break;
+                case 3:
+                    player3.setVolume(vol, vol);
+                    break;
+                case 4:
+                    player4.setVolume(vol, vol);
+                    break;
+                case 5:
+                    player5.setVolume(vol, vol);
+                    break;
+                case 6:
+                    player6.setVolume(vol, vol);
+                    break;
+                case 7:
+                    player7.setVolume(vol, vol);
+                    break;
+                case 8:
+                    player8.setVolume(vol, vol);
+                    break;
+                case 9:
+                    player9.setVolume(vol, vol);
+                    break;
+            }
         }
     }
 

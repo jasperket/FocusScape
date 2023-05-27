@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -63,7 +62,7 @@ public class ScenePreview extends AppCompatActivity implements View.OnClickListe
         wind2.setOnClickListener(this);
         rain2.setOnClickListener(this);
         thunder2.setOnClickListener(this);
-        harbor.setOnClickListener(this);;
+        harbor.setOnClickListener(this);
         whale.setOnClickListener(this);
         fire2.setOnClickListener(this);
 
