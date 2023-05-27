@@ -28,6 +28,10 @@
             android:name=".setreminder.SetReminder"
             android:exported="false" />
         <activity
+            android:name=".ScenePreview"
+            android:exported="false"
+            />
+        <activity
             android:name=".NoisePlayer"
             android:exported="false" />
         <activity

@@ -14,8 +14,7 @@ import android.widget.ImageView;
 
 public class Scene2Fragment extends Fragment implements View.OnClickListener {
     View view;
-    ImageView wave, seagull, walkingwater, wind, rain, thunder, harbor, whale, fire, back;
-
+    ImageView wave, seagull, walkingwater, wind, rain, thunder, harbor, whale, fire, back, anchor;
     int selected;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {

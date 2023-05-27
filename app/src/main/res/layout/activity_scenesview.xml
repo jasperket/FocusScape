@@ -91,7 +91,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play1"
+                            android:id="@+id/ffirst"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -128,7 +128,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play2"
+                            android:id="@+id/fsecond"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -165,7 +165,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play3"
+                            android:id="@+id/fthird"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -202,7 +202,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play4"
+                            android:id="@+id/ffourth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -239,7 +239,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play5"
+                            android:id="@+id/ffifth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -277,7 +277,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play6"
+                            android:id="@+id/fsixth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -315,7 +315,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play7"
+                            android:id="@+id/fseventh"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -353,7 +353,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play8"
+                            android:id="@+id/feighth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -391,7 +391,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play9"
+                            android:id="@+id/fninth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -419,11 +419,10 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@+id/forestscene"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#A8D5E4"
-                        android:text="Forest Scene"
+                        android:text="Beach Scene"
                         android:layout_marginBottom="10dp"
                         android:textStyle="bold"
                         android:padding="10dp"
@@ -436,15 +435,14 @@
                         android:layout_below="@+id/forestscene"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/first"
+                            android:id="@+id/beach1"
                             android:layout_below="@+id/textView2"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
                             android:clickable="true"
                             android:foregroundTint="@color/dark_blue"
-                            android:src="@drawable/bird"
-                            android:contentDescription="birds"/>
+                            android:src="@drawable/wave" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -453,12 +451,12 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:drawableTint="@color/blue_1000"
-                            android:text="Birds"
+                            android:text="Waves"
                             android:textColor="@color/blue_1000"
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play1"
+                            android:id="@+id/bfirst"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -475,12 +473,11 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/second"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:clickable="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/frogs"
+                            android:src="@drawable/seagull"
                             android:contentDescription="frogs"/>
 
                         <TextView
@@ -490,12 +487,12 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:drawableTint="@color/blue_1000"
-                            android:text="Frogs"
+                            android:text="Seagull"
                             android:textColor="@color/blue_1000"
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play2"
+                            android:id="@+id/bsecond"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -512,13 +509,12 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/third"
                             android:clickable="true"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
-                            android:contentDescription="crickets"
-                            android:src="@drawable/crickets" />
+                            android:contentDescription="walkingwater"
+                            android:src="@drawable/walkingwater" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -527,12 +523,12 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:drawableTint="@color/blue_1000"
-                            android:text="Crickets"
+                            android:text="Walking in Water"
                             android:textColor="@color/blue_1000"
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play3"
+                            android:id="@+id/bthird"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -549,7 +545,6 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/fourth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:clickable="true"
@@ -569,7 +564,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play4"
+                            android:id="@+id/bfourth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -586,7 +581,6 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/fifth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -606,7 +600,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play5"
+                            android:id="@+id/bfifth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -624,12 +618,11 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/sixth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:clickable="true"
                             android:layout_margin="10dp"
-                            android:contentDescription="crickets"
+                            android:contentDescription="thunder"
                             android:src="@drawable/thunder" />
 
                         <TextView
@@ -644,7 +637,7 @@
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play6"
+                            android:id="@+id/bsixth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -662,13 +655,12 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/owl"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:clickable="true"
-                            android:src="@drawable/owl"
+                            android:src="@drawable/harbor"
                             android:layout_margin="10dp"
-                            android:contentDescription="owls"/>
+                            android:contentDescription="harbor"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -677,12 +669,12 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:drawableTint="@color/blue_1000"
-                            android:text="Owls"
+                            android:text="Harbor"
                             android:textColor="@color/blue_1000"
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play7"
+                            android:id="@+id/bseventh"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -691,7 +683,7 @@
                             android:layout_alignParentEnd="true"
                             app:srcCompat="@drawable/play_circle"
                             app:tint="@color/blue_700"
-                            android:contentDescription="play owls"/>
+                            android:contentDescription="harbor"/>
 
                     </TableRow>
 
@@ -700,13 +692,12 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/eighth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:clickable="true"
-                            android:src="@drawable/fire"
+                            android:src="@drawable/whale"
                             android:layout_margin="10dp"
-                            android:contentDescription="fire"/>
+                            android:contentDescription="whale"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -715,12 +706,12 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:drawableTint="@color/blue_1000"
-                            android:text="Fire"
+                            android:text="Whale"
                             android:textColor="@color/blue_1000"
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play8"
+                            android:id="@+id/beighth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"
@@ -738,13 +729,12 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="5dp">
                         <ImageView
-                            android:id="@+id/ninth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:clickable="true"
                             android:layout_margin="10dp"
-                            android:contentDescription="leaves"
-                            android:src="@drawable/leaves" />
+                            android:contentDescription="fire"
+                            android:src="@drawable/fire" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -753,12 +743,12 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:drawableTint="@color/blue_1000"
-                            android:text="Leaves"
+                            android:text="Fire"
                             android:textColor="@color/blue_1000"
                             android:textSize="22dp" />
 
                         <ImageView
-                            android:id="@+id/play9"
+                            android:id="@+id/bninth"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_margin="10dp"

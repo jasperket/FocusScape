@@ -19,7 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class NoisePlayer extends AppCompatActivity implements FragmentListener, SeekBar.OnSeekBarChangeListener {
-    ImageView play;
+    ImageView play, preview;
     Button btnscene1, btnscene2;
     Scene1Fragment frgscene1;
     Scene2Fragment frgscene2;
@@ -35,9 +35,10 @@ public class NoisePlayer extends AppCompatActivity implements FragmentListener, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noise_player);
         play = findViewById(R.id.btnPausePlay);
+        preview = findViewById(R.id.scenePreview);
         btnscene1 = findViewById(R.id.btnScene1);
         btnscene2 = findViewById(R.id.btnScene2);
-        volume =findViewById(R.id.skVolume);
+        volume = findViewById(R.id.skVolume);
         volume.setMax(100);
         isPlaying = false;
         selectedscene = 1;
@@ -45,6 +46,7 @@ public class NoisePlayer extends AppCompatActivity implements FragmentListener, 
         frgscene2 = new Scene2Fragment();
 
         volume.setOnSeekBarChangeListener(this);
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -67,6 +69,13 @@ public class NoisePlayer extends AppCompatActivity implements FragmentListener, 
             }
         });
 
+        preview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),ScenePreview.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
